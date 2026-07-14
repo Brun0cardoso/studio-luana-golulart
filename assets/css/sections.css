@@ -1,0 +1,279 @@
+/* ======================================================
+   SEÇÕES
+====================================================== */
+
+/* Espaçamento padrão entre as seções */
+.section{
+
+    padding: 100px 0;
+
+}
+
+/* ======================================================
+   TÍTULOS DAS SEÇÕES
+====================================================== */
+
+.section-title{
+
+    font-family: var(--fonte-titulo);
+
+    font-size: 2.5rem;
+
+    text-align: center;
+
+    color: var(--cor-preta);
+
+    margin-bottom: 60px;
+
+    position: relative;
+
+}
+
+/* Linha decorativa abaixo do título */
+.section-title::after{
+
+    content: "";
+
+    display: block;
+
+    width: 70px;
+
+    height: 3px;
+
+    background: var(--cor-primaria);
+
+    margin: 15px auto 0;
+
+    border-radius: 50px;
+
+}
+
+/* ======================================================
+   SUBTÍTULOS DAS SEÇÕES
+====================================================== */
+
+.section-subtitle{
+
+    /* Limita a largura para facilitar a leitura */
+    max-width: 750px;
+
+    /* Centraliza o bloco */
+    margin: 0 auto 60px;
+
+    /* Centraliza o texto */
+    text-align: center;
+
+    /* Cor do texto */
+    color: var(--cor-texto);
+
+    /* Tamanho da fonte */
+    font-size: 1.1rem;
+
+    /* Altura entre linhas */
+    line-height: 1.8;
+
+}
+
+/* ======================================================
+   SOBRE O STUDIO
+====================================================== */
+
+.about-content{
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+}
+
+/* Texto da seção */
+.about-text{
+
+    font-size: 1.1rem;
+
+    line-height: 2;
+
+    color: var(--cor-texto);
+
+    text-align: justify;
+
+    margin-bottom: 25px;
+
+}
+
+/* Último parágrafo sem margem inferior */
+.about-text:last-child{
+
+    margin-bottom: 0;
+
+}
+
+/* ======================================================
+   GALERIA
+====================================================== */
+
+.galeria-grid{
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 25px;
+
+    margin-top: 50px;
+
+}
+
+/* ======================================================
+   ITEM DA GALERIA
+====================================================== */
+
+.galeria-item{
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    box-shadow: var(--sombra);
+
+}
+
+/* ======================================================
+   IMAGEM
+====================================================== */
+
+.img-galeria{
+
+    width: 100%;
+
+    height: 340px;
+
+    object-fit: cover;
+
+    transition: var(--transicao);
+
+}
+
+/* ======================================================
+   HOVER
+====================================================== */
+
+.galeria-item:hover .img-galeria{
+
+    transform: scale(1.05);
+
+}
+
+/* ======================================================
+   DEPOIMENTOS
+====================================================== */
+
+.testimonial-card{
+
+    position: relative;
+
+    text-align: center;
+
+    padding: 40px 30px;
+
+}
+
+/* ======================================================
+   ASPAS DECORATIVAS
+====================================================== */
+
+.testimonial-card::before{
+
+    content: "❝";
+
+    display: block;
+
+    font-size: 4rem;
+
+    color: var(--cor-secundaria);
+
+    line-height: 1;
+
+    margin-bottom: 15px;
+
+}
+
+/* ======================================================
+   TEXTO DO DEPOIMENTO
+====================================================== */
+
+.testimonial-card p{
+
+    font-style: italic;
+
+    color: var(--cor-texto);
+
+    margin-bottom: 25px;
+
+    line-height: 1.8;
+
+}
+
+/* ======================================================
+   NOME DA CLIENTE
+====================================================== */
+
+.cliente{
+
+    font-weight: 700;
+
+    color: var(--cor-primaria);
+
+}
+
+/* ======================================================
+   ESTATÍSTICAS
+====================================================== */
+
+.estatisticas{
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 60px;
+
+    flex-wrap: wrap;
+
+    margin-top: 70px;
+
+}
+
+/* ======================================================
+   ITEM DAS ESTATÍSTICAS
+====================================================== */
+
+.estatistica-item{
+
+    text-align: center;
+
+}
+
+/* Número */
+
+.estatistica-item strong{
+
+    display: block;
+
+    font-size: 2.3rem;
+
+    color: var(--cor-primaria);
+
+    margin-bottom: 10px;
+
+}
+
+/* Texto */
+
+.estatistica-item span{
+
+    color: var(--cor-texto);
+
+    font-size: .95rem;
+
+}

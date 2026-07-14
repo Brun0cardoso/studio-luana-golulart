@@ -1,0 +1,325 @@
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer {
+
+    background: var(--cor-preta);
+
+    color: var(--cor-branca);
+
+    padding: 70px 0 30px;
+
+    margin-top: 80px;
+
+}
+
+/* ======================================================
+   CONTEÚDO PRINCIPAL
+====================================================== */
+
+.footer-content {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 50px;
+
+    margin-bottom: 50px;
+
+}
+
+/* ======================================================
+   TÍTULOS
+====================================================== */
+
+.footer-content h3 {
+
+    margin-bottom: 20px;
+
+    font-size: 1.3rem;
+
+    color: var(--cor-secundaria);
+
+}
+
+/* ======================================================
+   PARÁGRAFOS
+====================================================== */
+
+.footer-content p {
+
+    color: rgba(255,255,255,.80);
+
+    line-height: 1.8;
+
+}
+
+/* ======================================================
+   CONTATO
+====================================================== */
+
+.footer-contato p {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+
+}
+
+/* ======================================================
+   REDES SOCIAIS
+====================================================== */
+
+.footer-redes{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* Container dos ícones */
+
+.social-icons{
+
+    display:flex;
+
+    gap:20px;
+
+    margin-top:10px;
+
+}
+
+/* Links */
+
+.social-icons a{
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    color:var(--cor-branca);
+
+    font-size:1.4rem;
+
+    transition:var(--transicao);
+
+}
+
+/* Hover */
+
+.social-icons a:hover{
+
+    background:var(--cor-primaria);
+
+    transform:translateY(-5px);
+
+}
+
+/* ======================================================
+   ÍCONES
+====================================================== */
+
+.footer-redes i,
+.footer-contato i {
+
+    width: 22px;
+
+    text-align: center;
+
+    color: var(--cor-primaria);
+
+}
+
+/* ======================================================
+   RODAPÉ INFERIOR
+====================================================== */
+
+.footer-bottom {
+
+    border-top: 1px solid rgba(255,255,255,.15);
+
+    padding-top: 30px;
+
+    text-align: center;
+
+}
+
+/* ======================================================
+   COPYRIGHT
+====================================================== */
+
+.footer-bottom p {
+
+    color: rgba(255,255,255,.70);
+
+    margin-bottom: 10px;
+
+}
+
+/* ======================================================
+   DESENVOLVEDOR
+====================================================== */
+
+.developer {
+
+    font-size: .95rem;
+
+}
+
+.developer a {
+
+    color: var(--cor-branca);
+
+    font-weight: 600;
+
+    transition: var(--transicao);
+
+}
+
+.developer a:hover {
+
+    color: var(--cor-secundaria);
+
+}
+
+/* ======================================================
+   LINK ÁREA ADMINISTRATIVA
+====================================================== */
+
+.admin-link {
+
+    display: inline-block;
+
+    margin-top: 18px;
+
+    font-size: .85rem;
+
+    color: rgba(255,255,255,.60);
+
+    transition: var(--transicao);
+
+}
+
+.admin-link:hover {
+
+    color: var(--cor-secundaria);
+
+}
+
+/* ======================================================
+   BOTÃO FLUTUANTE
+====================================================== */
+
+.whatsapp-button{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:65px;
+
+    height:65px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:#fff;
+
+    font-size:2rem;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    transition:var(--transicao);
+
+    z-index:999;
+
+}
+
+.whatsapp-button:hover{
+
+    transform:scale(1.1);
+
+}
+
+/* ======================================================
+   ANIMAÇÃO DO BOTÃO WHATSAPP
+====================================================== */
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.whatsapp-button{
+
+    animation:pulse 2s infinite;
+
+}
+
+/* ======================================================
+   RESPONSIVIDADE BÁSICA
+====================================================== */
+
+@media (max-width: 768px) {
+
+    .footer-content {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 40px;
+
+    }
+
+    .footer-contato p,
+    .footer-redes a {
+
+        justify-content: center;
+
+    }
+
+}

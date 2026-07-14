@@ -1,0 +1,157 @@
+/* ======================================================
+   FORMULÁRIO DE AGENDAMENTO
+====================================================== */
+
+.formulario-agendamento{
+
+    max-width: 850px;
+
+    margin: 50px auto 0;
+
+    padding: 40px;
+
+    background: var(--cor-branca);
+
+    border-radius: 20px;
+
+    box-shadow: var(--sombra);
+
+}
+
+/* ======================================================
+   GRID DO FORMULÁRIO
+====================================================== */
+
+.formulario-agendamento{
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+
+}
+
+/* ======================================================
+   GRUPOS DE CAMPOS
+====================================================== */
+
+.form-group{
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+/* Campos que ocupam toda a largura */
+
+.form-group:has(textarea){
+
+    grid-column: 1 / -1;
+
+}
+
+/* ======================================================
+   LABELS
+====================================================== */
+
+.form-group label{
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    color: var(--cor-preta);
+
+}
+
+/* ======================================================
+   INPUTS
+====================================================== */
+
+.form-group input,
+
+.form-group select,
+
+.form-group textarea{
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: var(--borda);
+
+    background: var(--cor-branca);
+
+    color: var(--cor-texto);
+
+    transition: var(--transicao);
+
+}
+
+/* ======================================================
+   FOCO DOS CAMPOS
+====================================================== */
+
+.form-group input:focus,
+
+.form-group select:focus,
+
+.form-group textarea:focus{
+
+    border-color: var(--cor-primaria);
+
+    box-shadow: 0 0 0 4px rgba(214,51,132,.10);
+
+}
+
+/* ======================================================
+   TEXTAREA
+====================================================== */
+
+.form-group textarea{
+
+    resize: vertical;
+
+    min-height: 130px;
+
+}
+
+/* ======================================================
+   BOTÃO
+====================================================== */
+
+.formulario-agendamento button{
+
+    grid-column: 1 / -1;
+
+    justify-self: center;
+
+    min-width: 240px;
+
+}
+
+/* ======================================================
+   TEXTO INFORMATIVO
+====================================================== */
+
+.form-info{
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    font-size: .9rem;
+
+    color: var(--cor-texto);
+
+}
+
+.form-group-full{
+
+    grid-column: 1 / -1;
+
+}

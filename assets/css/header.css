@@ -1,0 +1,116 @@
+/* ======================================================
+   HEADER
+====================================================== */
+
+header{
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background: var(--cor-branca);
+
+    box-shadow: var(--sombra);
+
+}
+
+/* ======================================================
+   CONTAINER
+====================================================== */
+
+header .container{
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    min-height: 90px;
+
+}
+
+/* ======================================================
+   LOGO
+====================================================== */
+
+.logo{
+
+    width: 170px;
+
+    height: auto;
+
+    transition: var(--transicao);
+
+}
+
+.logo:hover{
+
+    transform:scale(1.05);
+
+}
+
+.menu-header{
+
+    display:flex;
+
+    gap:35px;
+
+}
+
+.menu-header a{
+
+    display:block;
+
+    padding:8px 0;
+
+    color:var(--cor-preta);
+
+    font-weight:600;
+
+    position:relative;
+
+    transition:var(--transicao);
+
+}
+
+.menu-header a:hover{
+
+    color:var(--cor-primaria);
+
+}
+
+.menu-header a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-4px;
+
+    width:0;
+
+    height:2px;
+
+    border-radius:999px;
+
+    background:var(--cor-primaria);
+
+    transition:var(--transicao);
+
+}
+
+.menu-header a:hover::after{
+
+    width:100%;
+
+}
+
+
+
+
+

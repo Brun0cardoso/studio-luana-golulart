@@ -1,0 +1,121 @@
+/* ======================================================
+   CARDS - SERVIÇOS
+====================================================== */
+
+/* Grid dos cards */
+.card-grid{
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 30px;
+
+    margin-top: 50px;
+
+}
+
+/* ======================================================
+   CARD
+====================================================== */
+
+.card{
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 35px;
+
+    background: var(--cor-branca);
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(0,0,0,.06);
+
+    transition: var(--transicao);
+
+}
+
+/* Efeito ao passar o mouse */
+.card:hover{
+
+    transform: translateY(-8px);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,.08);
+
+}
+
+/* ======================================================
+   TÍTULO
+====================================================== */
+
+.card h3{
+
+    font-family: var(--fonte-titulo);
+
+    font-size: 1.5rem;
+
+    color: var(--cor-preta);
+
+    margin-bottom: 20px;
+
+}
+
+/* ======================================================
+   DESCRIÇÃO
+====================================================== */
+
+.card p{
+
+    flex: 1;
+
+    line-height: 1.8;
+
+    color: var(--cor-texto);
+
+    margin-bottom: 30px;
+
+}
+
+/* ======================================================
+   PREÇO
+====================================================== */
+
+.card-price{
+
+    display: block;
+
+    margin-bottom: 25px;
+
+    font-size: .95rem;
+
+    color: var(--cor-texto);
+
+}
+
+.card-price strong{
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 1.5rem;
+
+    color: var(--cor-primaria);
+
+}
+
+/* ======================================================
+   BOTÃO
+====================================================== */
+
+.card .btn{
+
+    width: 100%;
+
+    text-align: center;
+
+}

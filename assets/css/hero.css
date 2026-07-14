@@ -1,0 +1,134 @@
+/* ======================================================
+   HERO
+   Seção principal da página inicial
+====================================================== */
+
+.hero {
+
+    /* Altura mínima da seção */
+    min-height: calc(100vh - 90px);
+
+    /* Centraliza o conteúdo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Centraliza os textos */
+    text-align: center;
+
+    /* Cor padrão do texto */
+    color: var(--cor-branca);
+
+    /* Espaçamento interno */
+    padding: 40px 20px;
+
+    /* Imagem de fundo com sobreposição escura */
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.60),
+            rgba(0, 0, 0, 0.60)
+        ),
+        url("../images/banner.jpg") center center / cover no-repeat;
+}
+
+/* ======================================================
+   CONTAINER DO HERO
+====================================================== */
+
+.hero .container{
+
+    max-width: 800px;
+
+    margin: 0 auto;
+
+}
+
+/* ======================================================
+   TÍTULO PRINCIPAL
+====================================================== */
+
+.hero-title{
+
+    font-family: var(--fonte-titulo);
+
+    font-size: clamp(2.5rem, 5vw, 4rem);
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    margin-bottom: 20px;
+
+    color: var(--cor-branca);
+
+}
+
+/* Palavra destacada do título */
+
+.hero-title span {
+
+    color: var(--cor-primaria);
+
+}
+
+/* ======================================================
+   SUBTÍTULO
+====================================================== */
+
+.hero-subtitle{
+
+    font-size: 1.3rem;
+
+    font-weight: 500;
+
+    max-width: 650px;
+
+    margin: 0 auto 20px;
+
+    color: rgba(255,255,255,.92);
+
+}
+
+/* ======================================================
+   TEXTO DESCRITIVO
+====================================================== */
+
+.hero-text{
+
+    max-width: 700px;
+
+    margin: 0 auto 40px;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,.82);
+
+}
+
+/* ======================================================
+   BOTÕES
+====================================================== */
+
+.hero-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+/* ======================================================
+   EFEITO SUAVE NOS BOTÕES
+====================================================== */
+
+.hero-buttons .btn {
+
+    min-width: 180px;
+
+}

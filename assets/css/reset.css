@@ -1,0 +1,64 @@
+/* ======================================================
+   RESET CSS
+   Remove estilos padrões dos navegadores
+====================================================== */
+
+/* Remove margens e preenchimentos padrão */
+
+*{
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+/* Melhora a rolagem da página */
+
+html{
+
+    scroll-behavior: smooth;
+
+}
+
+/* Remove marcadores das listas */
+
+ul,
+ol{
+
+    list-style: none;
+
+}
+
+/* Remove decoração dos links */
+
+a{
+
+    text-decoration: none;
+
+}
+
+/* Imagens responsivas */
+
+img{
+
+    display: block;
+
+    max-width: 100%;
+
+    height: auto;
+
+}
+
+/* Campos de formulário */
+
+input,
+button,
+textarea,
+select{
+
+    font: inherit;
+
+}

@@ -1,0 +1,143 @@
+/* ======================================================
+   ESTILOS GLOBAIS
+   Studio Luana Goulart
+====================================================== */
+
+/* ======================================================
+   BODY
+====================================================== */
+
+body{
+
+    background: var(--cor-branca);
+
+    color: var(--cor-texto);
+
+    font-family: var(--fonte-texto);
+
+    line-height: 1.6;
+
+}
+
+/* ======================================================
+   CONTAINER
+====================================================== */
+
+.container{
+
+    width: 90%;
+
+    max-width: var(--largura-container);
+
+    margin: 0 auto;
+
+}
+
+/* ======================================================
+   TÍTULOS
+====================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+
+    font-family: var(--fonte-titulo);
+
+    color: var(--cor-preta);
+
+    font-weight: 700;
+
+}
+
+/* ======================================================
+   PARÁGRAFOS
+====================================================== */
+
+p{
+
+    color: var(--cor-texto);
+
+}
+
+/* ======================================================
+   LINKS
+====================================================== */
+
+a{
+
+    transition: var(--transicao);
+
+}
+
+/* ======================================================
+   BOTÕES
+====================================================== */
+
+.btn{
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 12px 28px;
+
+    border: none;
+
+    border-radius: var(--borda-pill);
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: var(--transicao);
+
+}
+
+.btn-primary{
+
+    background: var(--cor-primaria);
+
+    color: var(--cor-branca);
+
+}
+
+.btn-primary:hover{
+
+    transform: translateY(-2px);
+
+    opacity: .95;
+
+}
+
+.btn-secondary{
+
+    background: transparent;
+
+    color: var(--cor-branca);
+
+    border: 2px solid var(--cor-branca);
+
+}
+
+.btn-secondary:hover{
+
+    background: var(--cor-branca);
+
+    color: var(--cor-primaria);
+
+}
+
+/* ======================================================
+   UTILITÁRIOS
+====================================================== */
+
+.text-center{
+
+    text-align: center;
+
+}
