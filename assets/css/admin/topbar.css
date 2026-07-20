@@ -1,0 +1,450 @@
+/* =====================================================
+   TOPBAR
+   Studio Luana Goulart
+===================================================== */
+
+/* =====================================================
+   TOPO
+===================================================== */
+
+.topbar{
+
+    height:var(--topbar-height);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:0 35px;
+
+    background:var(--branco);
+
+    border-bottom:1px solid var(--cinza-200);
+
+    box-shadow:var(--shadow-sm);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:var(--z-topbar);
+
+}
+
+/* =====================================================
+   LADO ESQUERDO
+===================================================== */
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+/* =====================================================
+   BOTÃO MENU
+===================================================== */
+
+.menu-toggle{
+
+    width:46px;
+
+    height:46px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:var(--radius);
+
+    background:var(--rosa-claro);
+
+    color:var(--rosa);
+
+    transition:var(--transition);
+
+}
+
+.menu-toggle:hover{
+
+    background:var(--rosa);
+
+    color:var(--branco);
+
+}
+
+/* =====================================================
+   TÍTULOS
+===================================================== */
+
+.topbar-title h1{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:var(--texto);
+
+    margin-bottom:4px;
+
+}
+
+.topbar-title p{
+
+    font-size:14px;
+
+    color:var(--texto-claro);
+
+}
+
+/* =====================================================
+   LADO DIREITO
+===================================================== */
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+/* =====================================================
+   CAMPO DE PESQUISA
+===================================================== */
+
+.search-box{
+
+    position:relative;
+
+}
+
+.search-box input{
+
+    width:260px;
+
+    height:46px;
+
+    padding:0 18px 0 45px;
+
+    border:1px solid var(--borda);
+
+    border-radius:var(--radius-full);
+
+    background:var(--branco);
+
+    transition:var(--transition);
+
+}
+
+.search-box input:focus{
+
+    outline:none;
+
+    border-color:var(--rosa);
+
+    box-shadow:0 0 0 4px rgba(196,111,142,.15);
+
+}
+
+.search-box i{
+
+    position:absolute;
+
+    left:16px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--texto-claro);
+
+}
+
+/* =====================================================
+   DATA
+===================================================== */
+
+.topbar-date{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 18px;
+
+    border-radius:var(--radius-full);
+
+    background:var(--rosa-claro);
+
+    color:var(--rosa);
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* =====================================================
+   NOTIFICAÇÕES
+===================================================== */
+
+.notification{
+
+    position:relative;
+
+    width:46px;
+
+    height:46px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:var(--rosa-claro);
+
+    color:var(--rosa);
+
+    transition:var(--transition);
+
+}
+
+.notification:hover{
+
+    background:var(--rosa);
+
+    color:var(--branco);
+
+}
+
+.notification .badge{
+
+    position:absolute;
+
+    top:2px;
+
+    right:2px;
+
+    width:18px;
+
+    height:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:var(--erro);
+
+    color:#FFF;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+/* =====================================================
+   USUÁRIO
+===================================================== */
+
+.user-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    cursor:pointer;
+
+}
+
+.user-avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--rosa),
+        var(--rosa-hover)
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#FFF;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.user-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.user-info strong{
+
+    color:var(--texto);
+
+    font-size:15px;
+
+}
+
+.user-info span{
+
+    color:var(--texto-claro);
+
+    font-size:13px;
+
+}
+
+/* =====================================================
+   MENU DROPDOWN
+===================================================== */
+
+.user-dropdown{
+
+    position:absolute;
+
+    top:80px;
+
+    right:35px;
+
+    width:220px;
+
+    background:var(--branco);
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow-lg);
+
+    overflow:hidden;
+
+    display:none;
+
+    z-index:var(--z-dropdown);
+
+}
+
+.user-dropdown.ativo{
+
+    display:block;
+
+}
+
+.user-dropdown a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px 20px;
+
+    color:var(--texto);
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+.user-dropdown a:hover{
+
+    background:var(--rosa-claro);
+
+    color:var(--rosa);
+
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:992px){
+
+    .search-box{
+
+        display:none;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .topbar{
+
+        padding:0 20px;
+
+    }
+
+    .topbar-title p{
+
+        display:none;
+
+    }
+
+    .topbar-date{
+
+        display:none;
+
+    }
+
+    .user-info{
+
+        display:none;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .topbar-title h1{
+
+        font-size:22px;
+
+    }
+
+}

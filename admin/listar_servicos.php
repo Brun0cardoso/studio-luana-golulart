@@ -1,5 +1,11 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Listagem de Serviços
+|--------------------------------------------------------------------------
+*/
+
 require_once "../verificar_sessao.php";
 require_once "../config/conexao.php";
 
@@ -16,151 +22,187 @@ try {
         ORDER BY nome ASC
     ";
 
-    $stmt = $pdo->query($sql);
-
-    $servicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    $servicos = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
 
     die("Erro ao carregar os serviços: " . $e->getMessage());
-
 }
+
+require_once "includes/admin_header.php";
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<div class="admin-layout">
 
-<head>
+    <?php require_once "includes/sidebar.php"; ?>
 
-    <meta charset="UTF-8">
+    <div class="conteudo-admin">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php require_once "includes/topbar.php"; ?>
 
-    <title>Serviços | Studio Luana Goulart</title>
+        <main class="container-admin fade">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+            <!-- =====================================================
+                 CABEÇALHO DA PÁGINA
+            ====================================================== -->
 
-</head>
+            <div class="page-header">
 
-<body>
+                <div>
 
-<div class="container">
+                    <h1 class="page-title">
 
-    <h1>Serviços</h1>
+                        Serviços
 
-    <p class="subtitulo">
+                    </h1>
 
-        Gerencie os serviços oferecidos pelo Studio.
+                    <p class="page-description">
 
-    </p>
+                        Gerencie os serviços oferecidos pelo Studio.
 
-    <p>
+                    </p>
 
-        <a href="novo_servico.php" class="btn">
+                </div>
 
-            + Novo Serviço
+                <a href="novo_servico.php" class="btn">
 
-        </a>
+                    <i class="fa-solid fa-plus"></i>
 
-    </p>
+                    Novo Serviço
 
-    <table>
+                </a>
 
-        <thead>
+            </div>
 
-            <tr>
+            <!-- =====================================================
+                 TABELA
+            ====================================================== -->
 
-                <th>Nome</th>
-                <th>Valor</th>
-                <th>Duração</th>
-                <th>Status</th>
-                <th>Ações</th>
+            <div class="painel">
 
-            </tr>
+                <div class="table-responsive">
 
-        </thead>
+                    <table class="tabela">
 
-        <tbody>
+                        <thead>
 
-        <?php if (empty($servicos)): ?>
+                            <tr>
 
-            <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th>Duração</th>
+                                <th>Status</th>
+                                <th width="220">Ações</th>
 
-                <td colspan="5" style="text-align:center">
+                            </tr>
 
-                    Nenhum serviço cadastrado.
+                        </thead>
 
-                </td>
+                        <tbody>
 
-            </tr>
+                            <?php if (empty($servicos)): ?>
 
-        <?php else: ?>
+                                <tr>
 
-            <?php foreach ($servicos as $servico): ?>
+                                    <td colspan="5" style="text-align:center; padding:30px;">
 
-                <tr>
+                                        Nenhum serviço cadastrado.
 
-                    <td><?= htmlspecialchars($servico["nome"]) ?></td>
+                                    </td>
 
-                    <td>
+                                </tr>
 
-                        R$ <?= number_format($servico["valor"], 2, ",", ".") ?>
+                            <?php else: ?>
 
-                    </td>
+                                <?php foreach ($servicos as $servico): ?>
 
-                    <td>
+                                    <tr>
 
-                        <?= $servico["duracao"] ?> min
+                                        <td>
 
-                    </td>
+                                            <?= htmlspecialchars($servico["nome"]); ?>
 
-                    <td>
+                                        </td>
 
-                        <?= $servico["ativo"] ? "🟢 Ativo" : "🔴 Inativo" ?>
+                                        <td>
 
-                    </td>
+                                            R$ <?= number_format($servico["valor"], 2, ",", "."); ?>
 
-                    <td>
+                                        </td>
 
-                        <a href="editar_servico.php?id=<?= $servico["id"] ?>">
+                                        <td>
 
-                            Editar
+                                            <?= (int) $servico["duracao"]; ?> min
 
-                        </a>
+                                        </td>
 
-                        |
+                                        <td>
 
-                        <a
-                            href="excluir_servico.php?id=<?= $servico["id"] ?>"
-                            onclick="return confirm('Deseja realmente excluir este serviço?');">
+                                            <?php if ($servico["ativo"]): ?>
 
-                            Excluir
+                                                <span class="badge badge-sucesso">
 
-                        </a>
+                                                    Ativo
 
-                    </td>
+                                                </span>
 
-                </tr>
+                                            <?php else: ?>
 
-            <?php endforeach; ?>
+                                                <span class="badge badge-erro">
 
-        <?php endif; ?>
+                                                    Inativo
 
-        </tbody>
+                                                </span>
 
-    </table>
+                                            <?php endif; ?>
 
-    <br>
+                                        </td>
 
-    <a href="dashboard.php" class="btn">
+                                        <td class="acoes">
 
-        ← Voltar ao Painel
+                                            <a href="editar_servico.php?id=<?= $servico["id"]; ?>" class="btn">
 
-    </a>
+                                                <i class="fa-solid fa-pen"></i>
+
+                                                Editar
+
+                                            </a>
+
+                                            <a
+                                                href="excluir_servico.php?id=<?= $servico["id"]; ?>"
+                                                class="btn btn-perigo"
+                                                onclick="return confirm('Deseja realmente excluir este serviço?');">
+
+                                                <i class="fa-solid fa-trash"></i>
+
+                                                Excluir
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+            
+        </main>
+
+    </div>
 
 </div>
 
-</body>
+<?php
 
-</html>
+require_once "includes/admin_footer.php";
+
+?>

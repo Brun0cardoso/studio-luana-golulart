@@ -1,0 +1,206 @@
+/* =====================================================
+   RESET
+   Studio Luana Goulart - Painel Administrativo
+===================================================== */
+
+/* Remove margens e espaçamentos padrões */
+
+*,
+*::before,
+*::after{
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+/* =====================================================
+   HTML E BODY
+===================================================== */
+
+html{
+
+    scroll-behavior: smooth;
+
+}
+
+body{
+
+    min-height: 100vh;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    color: #2D2D2D;
+
+    background: #F7F5F7;
+
+    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: antialiased;
+
+}
+
+/* =====================================================
+   IMAGENS
+===================================================== */
+
+img{
+
+    display: block;
+
+    max-width: 100%;
+
+    height: auto;
+
+}
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+a{
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+/* =====================================================
+   LISTAS
+===================================================== */
+
+ul,
+ol{
+
+    list-style: none;
+
+}
+
+/* =====================================================
+   FORMULÁRIOS
+===================================================== */
+
+input,
+select,
+textarea,
+button{
+
+    font: inherit;
+
+}
+
+button{
+
+    cursor: pointer;
+
+    border: none;
+
+    background: transparent;
+
+}
+
+/* =====================================================
+   TABELAS
+===================================================== */
+
+table{
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
+
+    width: 100%;
+
+}
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+textarea{
+
+    resize: vertical;
+
+}
+
+/* =====================================================
+   INPUT NUMBER
+===================================================== */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+
+    -webkit-appearance: none;
+
+    margin: 0;
+
+}
+
+input[type="number"]{
+
+    appearance: textfield;
+
+    -moz-appearance: textfield;
+
+}
+
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
+
+::placeholder{
+
+    color: #9A9A9A;
+
+    opacity: 1;
+
+}
+
+/* =====================================================
+   SELEÇÃO DE TEXTO
+===================================================== */
+
+::selection{
+
+    background: #C46F8E;
+
+    color: #FFFFFF;
+
+}
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+
+    width: 10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background: #F1F1F1;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background: #C46F8E;
+
+    border-radius: 20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background: #B55C7D;
+
+}

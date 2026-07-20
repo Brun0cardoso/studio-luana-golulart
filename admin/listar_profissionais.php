@@ -1,13 +1,13 @@
 <?php
 
-require_once "../verificar_sessao.php";
-require_once "../config/conexao.php";
-
 /*
 |--------------------------------------------------------------------------
-| Lista todos os profissionais
+| Listagem de Profissionais
 |--------------------------------------------------------------------------
 */
+
+require_once "../verificar_sessao.php";
+require_once "../config/conexao.php";
 
 try {
 
@@ -18,146 +18,183 @@ try {
             especialidade,
             ativo
         FROM profissionais
-        ORDER BY nome
+        ORDER BY nome ASC
     ";
 
-    $stmt = $pdo->query($sql);
-
-    $profissionais = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    $profissionais = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
 
     die("Erro ao carregar os profissionais: " . $e->getMessage());
-
 }
+
+require_once "includes/admin_header.php";
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<div class="admin-layout">
 
-<head>
+    <?php require_once "includes/sidebar.php"; ?>
 
-    <meta charset="UTF-8">
+    <div class="conteudo-admin">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php require_once "includes/topbar.php"; ?>
 
-    <title>Profissionais | Studio Luana Goulart</title>
+        <main class="container-admin fade">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+            <!-- =====================================================
+                 CABEÇALHO DA PÁGINA
+            ====================================================== -->
 
-</head>
+            <div class="page-header">
 
-<body>
+                <div>
 
-<div class="container">
+                    <h1 class="page-title">
 
-    <h1>Profissionais</h1>
+                        Profissionais
 
-    <p class="subtitulo">
+                    </h1>
 
-        Gerencie os profissionais do Studio.
+                    <p class="page-description">
 
-    </p>
+                        Gerencie os profissionais cadastrados no Studio.
 
-    <p>
+                    </p>
 
-        <a href="novo_profissional.php" class="btn">
+                </div>
 
-            + Novo Profissional
+                <a href="novo_profissional.php" class="btn">
 
-        </a>
+                    <i class="fa-solid fa-user-plus"></i>
 
-    </p>
+                    Novo Profissional
 
-    <table>
+                </a>
 
-        <thead>
+            </div>
 
-            <tr>
+            <!-- =====================================================
+                 TABELA
+            ====================================================== -->
 
-                <th>Nome</th>
+            <div class="painel">
 
-                <th>Especialidade</th>
+                <div class="table-responsive">
 
-                <th>Status</th>
+                    <table class="tabela">
 
-                <th>Ações</th>
+                        <thead>
 
-            </tr>
+                            <tr>
 
-        </thead>
+                                <th>Nome</th>
+                                <th>Especialidade</th>
+                                <th>Status</th>
+                                <th width="220">Ações</th>
 
-        <tbody>
+                            </tr>
 
-        <?php if (count($profissionais) > 0): ?>
+                        </thead>
 
-            <?php foreach ($profissionais as $profissional): ?>
+                        <tbody>
 
-                <tr>
+                            <?php if (empty($profissionais)): ?>
 
-                    <td><?= htmlspecialchars($profissional["nome"]); ?></td>
+                                <tr>
 
-                    <td><?= htmlspecialchars($profissional["especialidade"]); ?></td>
+                                    <td colspan="4" style="text-align:center; padding:30px;">
 
-                    <td>
+                                        Nenhum profissional cadastrado.
 
-                        <?= $profissional["ativo"] ? "🟢 Ativo" : "🔴 Inativo"; ?>
+                                    </td>
 
-                    </td>
+                                </tr>
 
-                    <td>
+                            <?php else: ?>
 
-                        <a href="editar_profissional.php?id=<?= $profissional["id"]; ?>">
+                                <?php foreach ($profissionais as $profissional): ?>
 
-                            Editar
+                                    <tr>
 
-                        </a>
+                                        <td>
 
-                        |
+                                            <?= htmlspecialchars($profissional["nome"]); ?>
 
-                        <a
-                            href="excluir_profissional.php?id=<?= $profissional["id"]; ?>"
-                            onclick="return confirm('Deseja realmente excluir este profissional?')">
+                                        </td>
 
-                            Excluir
+                                        <td>
 
-                        </a>
+                                            <?= htmlspecialchars($profissional["especialidade"]); ?>
 
-                    </td>
+                                        </td>
 
-                </tr>
+                                        <td>
 
-            <?php endforeach; ?>
+                                            <?php if ($profissional["ativo"]): ?>
 
-        <?php else: ?>
+                                                <span class="badge badge-sucesso">
 
-            <tr>
+                                                    Ativo
 
-                <td colspan="4">
+                                                </span>
 
-                    Nenhum profissional cadastrado.
+                                            <?php else: ?>
 
-                </td>
+                                                <span class="badge badge-erro">
 
-            </tr>
+                                                    Inativo
 
-        <?php endif; ?>
+                                                </span>
 
-        </tbody>
+                                            <?php endif; ?>
 
-    </table>
+                                        </td>
 
-    <br>
+                                        <td class="acoes">
 
-    <a href="dashboard.php" class="btn">
+                                            <a href="editar_profissional.php?id=<?= $profissional["id"]; ?>" class="btn">
 
-        ← Voltar ao Painel
+                                                <i class="fa-solid fa-pen"></i>
 
-    </a>
+                                                Editar
+
+                                            </a>
+
+                                            <a
+                                                href="excluir_profissional.php?id=<?= $profissional["id"]; ?>"
+                                                class="btn btn-perigo"
+                                                onclick="return confirm('Deseja realmente excluir este profissional?')">
+
+                                                <i class="fa-solid fa-trash"></i>
+
+                                                Excluir
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
 
 </div>
 
-</body>
+<?php
 
-</html>
+require_once "includes/admin_footer.php";
+
+?>

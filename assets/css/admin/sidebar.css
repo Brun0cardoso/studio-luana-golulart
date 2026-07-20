@@ -1,0 +1,401 @@
+/* =====================================================
+   SIDEBAR
+   Studio Luana Goulart
+===================================================== */
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:var(--sidebar-width);
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    background:linear-gradient(
+        180deg,
+        #D48AA3 0%,
+        #C46F8E 100%
+    );
+
+    color:var(--branco);
+
+    padding:30px 20px;
+
+    box-shadow:var(--shadow-lg);
+
+    z-index:var(--z-sidebar);
+
+    overflow-y:auto;
+
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.sidebar-logo{
+
+    text-align:center;
+
+    margin-bottom:45px;
+
+}
+
+.logo-circle{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.18);
+
+    border:2px solid rgba(255,255,255,.25);
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#FFF;
+
+}
+
+.sidebar-logo h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:5px;
+
+}
+
+.sidebar-logo span{
+
+    font-size:14px;
+
+    opacity:.9;
+
+    letter-spacing:.5px;
+
+}
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.sidebar-menu{
+
+    flex:1;
+
+}
+
+.sidebar-menu ul{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.sidebar-menu li{
+
+    list-style:none;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:16px 18px;
+
+    border-radius:var(--radius);
+
+    color:#FFF;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+}
+
+/* =====================================================
+   ÍCONES
+===================================================== */
+
+.sidebar-menu a i{
+
+    width:24px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.sidebar-menu a:hover{
+
+    background:rgba(255,255,255,.12);
+
+    transform:translateX(5px);
+
+}
+
+/* =====================================================
+   ITEM ATIVO
+===================================================== */
+
+.sidebar-menu a.ativo{
+
+    background:#FFF;
+
+    color:var(--rosa);
+
+    font-weight:600;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.sidebar-menu a.ativo i{
+
+    color:var(--rosa);
+
+}
+
+.sidebar-menu a.ativo::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-20px;
+
+    top:10px;
+
+    width:6px;
+
+    height:70%;
+
+    border-radius:20px;
+
+    background:#FFF;
+
+}
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+.sidebar-footer{
+
+    margin-top:40px;
+
+    border-top:1px solid rgba(255,255,255,.20);
+
+    padding-top:25px;
+
+}
+
+/* =====================================================
+   USUÁRIO
+===================================================== */
+
+.usuario-sidebar{
+
+    margin-bottom:20px;
+
+}
+
+.usuario-sidebar small{
+
+    display:block;
+
+    font-size:13px;
+
+    opacity:.85;
+
+    margin-bottom:5px;
+
+}
+
+.usuario-sidebar strong{
+
+    display:block;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+.logout{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:15px;
+
+    border-radius:var(--radius);
+
+    background:rgba(255,255,255,.08);
+
+    color:#FFF;
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+.logout:hover{
+
+    background:#FFF;
+
+    color:var(--rosa);
+
+}
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+.sidebar::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+}
+
+/* =====================================================
+   SIDEBAR FECHADA
+===================================================== */
+
+.sidebar.minimizada{
+
+    width:90px;
+
+    transition:var(--transition);
+
+}
+
+.sidebar.minimizada .sidebar-logo h2,
+.sidebar.minimizada .sidebar-logo span,
+.sidebar.minimizada .sidebar-menu span,
+.sidebar.minimizada .usuario-sidebar{
+
+    display:none;
+
+}
+
+.sidebar.minimizada .sidebar-menu a{
+
+    justify-content:center;
+
+}
+
+.sidebar.minimizada .sidebar-menu a i{
+
+    margin:0;
+
+    font-size:20px;
+
+}
+
+.sidebar.minimizada .logout{
+
+    justify-content:center;
+
+}
+
+.sidebar.minimizada .logout span{
+
+    display:none;
+
+}
+
+/* =====================================================
+   RESPONSIVO
+===================================================== */
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        left:-100%;
+
+        transition:.35s;
+
+    }
+
+    .sidebar.ativo{
+
+        left:0;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:280px;
+
+    }
+
+}

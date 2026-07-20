@@ -4,7 +4,7 @@
 |--------------------------------------------------------------------------
 | Painel Administrativo
 |--------------------------------------------------------------------------
-| Exibe estatísticas e atalhos do sistema.
+| Dashboard principal do sistema.
 |--------------------------------------------------------------------------
 */
 
@@ -13,240 +13,524 @@ require_once "../config/conexao.php";
 
 /*
 |--------------------------------------------------------------------------
-| Estatísticas do Sistema
+| Estatísticas
 |--------------------------------------------------------------------------
 */
 
 try {
 
-    // Total de clientes
     $totalClientes = $pdo->query("SELECT COUNT(*) FROM clientes")->fetchColumn();
 
-    // Total de profissionais
     $totalProfissionais = $pdo->query("SELECT COUNT(*) FROM profissionais")->fetchColumn();
 
-    // Total de serviços
     $totalServicos = $pdo->query("SELECT COUNT(*) FROM servicos")->fetchColumn();
 
-    // Total de horários
     $totalHorarios = $pdo->query("SELECT COUNT(*) FROM horarios")->fetchColumn();
 
-    // Agendamentos de hoje
-    $stmt = $pdo->prepare("
+    $agendamentosHoje = $pdo->query("
         SELECT COUNT(*)
         FROM agendamentos
         WHERE data_agendamento = CURDATE()
-    ");
-    $stmt->execute();
-    $agendamentosHoje = $stmt->fetchColumn();
+    ")->fetchColumn();
 
-    // Agendamentos do mês
-    $stmt = $pdo->prepare("
+    $agendamentosMes = $pdo->query("
         SELECT COUNT(*)
         FROM agendamentos
-        WHERE MONTH(data_agendamento) = MONTH(CURDATE())
-          AND YEAR(data_agendamento) = YEAR(CURDATE())
-    ");
-    $stmt->execute();
-    $agendamentosMes = $stmt->fetchColumn();
+        WHERE MONTH(data_agendamento)=MONTH(CURDATE())
+        AND YEAR(data_agendamento)=YEAR(CURDATE())
+    ")->fetchColumn();
 
-    // Confirmados
-    $stmt = $pdo->prepare("
+    $confirmados = $pdo->query("
         SELECT COUNT(*)
         FROM agendamentos
-        WHERE status = 'Confirmado'
-    ");
-    $stmt->execute();
-    $confirmados = $stmt->fetchColumn();
+        WHERE status='Confirmado'
+    ")->fetchColumn();
 
-    // Pendentes
-    $stmt = $pdo->prepare("
+    $pendentes = $pdo->query("
         SELECT COUNT(*)
         FROM agendamentos
-        WHERE status = 'Pendente'
-    ");
-    $stmt->execute();
-    $pendentes = $stmt->fetchColumn();
+        WHERE status='Pendente'
+    ")->fetchColumn();
 
-    // Cancelados
-    $stmt = $pdo->prepare("
+    $cancelados = $pdo->query("
         SELECT COUNT(*)
         FROM agendamentos
-        WHERE status = 'Cancelado'
-    ");
-    $stmt->execute();
-    $cancelados = $stmt->fetchColumn();
+        WHERE status='Cancelado'
+    ")->fetchColumn();
 
-} catch (PDOException $e) {
+} catch(PDOException $e){
 
-    die("Erro ao carregar o dashboard: " . $e->getMessage());
+    die("Erro ao carregar dashboard: ".$e->getMessage());
 
 }
 
+require_once "includes/admin_header.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<div class="admin-layout">
 
-<head>
+    <?php require_once "includes/sidebar.php"; ?>
 
-    <meta charset="UTF-8">
+    <div class="conteudo-admin">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php require_once "includes/topbar.php"; ?>
 
-    <title>Painel Administrativo</title>
+        <main class="container-admin fade">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+            <div class="page-header">
 
-</head>
+                <div>
 
-<body>
+                    <h1 class="page-title">
+                        Dashboard
+                    </h1>
 
-<div class="container">
+                    <p class="page-description">
 
-    <header class="dashboard-header">
+                        Bem-vinda,
+                        <strong><?= htmlspecialchars($_SESSION["admin_nome"]); ?></strong>
 
-        <div>
+                    </p>
 
-            <h1>Studio Luana Goulart</h1>
+                </div>
 
-            <p class="subtitulo">
-                Bem-vindo ao Painel Administrativo
-            </p>
+            </div>
 
-        </div>
+            <!-- =====================================================
+                 CARDS
+            ====================================================== -->
 
-        <div class="usuario">
+            <div class="dashboard-grid">
 
-            <strong>
+                <div class="stat-card card-clientes">
 
-                Olá,
-                <?= htmlspecialchars($_SESSION["admin_nome"]); ?>
+                    <div class="stat-info">
 
-            </strong>
+                        <span class="stat-title">
 
-            <br>
+                            Clientes
 
-            <small>
+                        </span>
 
-                <?= date("d/m/Y"); ?>
+                        <h2 class="stat-value">
 
-            </small>
+                            <?= $totalClientes ?>
 
-        </div>
+                        </h2>
 
-    </header>
+                        <span class="stat-description">
 
-    <h2>📊 Estatísticas Gerais</h2>
+                            Clientes cadastrados
 
-    <div class="dashboard-cards">
+                        </span>
 
-        <div class="card">
-            <h3><?= $totalClientes ?></h3>
-            <p>Clientes</p>
-        </div>
+                    </div>
 
-        <div class="card">
-            <h3><?= $totalProfissionais ?></h3>
-            <p>Profissionais</p>
-        </div>
+                    <div class="stat-icon">
 
-        <div class="card">
-            <h3><?= $totalServicos ?></h3>
-            <p>Serviços</p>
-        </div>
+                        <i class="fa-solid fa-users"></i>
 
-        <div class="card">
-            <h3><?= $totalHorarios ?></h3>
-            <p>Horários</p>
-        </div>
+                    </div>
 
-    </div>
+                </div>
 
-    <h2>📅 Agendamentos</h2>
+                <div class="stat-card card-profissionais">
 
-    <div class="dashboard-cards">
+                    <div class="stat-info">
 
-        <div class="card">
+                        <span class="stat-title">
 
-            <h3><?= $agendamentosHoje ?></h3>
+                            Profissionais
 
-            <p>Hoje</p>
+                        </span>
 
-        </div>
+                        <h2 class="stat-value">
 
-        <div class="card">
+                            <?= $totalProfissionais ?>
 
-            <h3><?= $agendamentosMes ?></h3>
+                        </h2>
 
-            <p>Este Mês</p>
+                        <span class="stat-description">
 
-        </div>
+                            Equipe cadastrada
 
-    </div>
+                        </span>
 
-    <h2>📌 Situação dos Agendamentos</h2>
+                    </div>
 
-    <div class="dashboard-cards">
+                    <div class="stat-icon">
 
-        <div class="card">
+                        <i class="fa-solid fa-user-tie"></i>
 
-            <h3><?= $confirmados ?></h3>
+                    </div>
 
-            <p>Confirmados</p>
+                </div>
 
-        </div>
+                <div class="stat-card card-servicos">
 
-        <div class="card">
+                    <div class="stat-info">
 
-            <h3><?= $pendentes ?></h3>
+                        <span class="stat-title">
 
-            <p>Pendentes</p>
+                            Serviços
 
-        </div>
+                        </span>
 
-        <div class="card">
+                        <h2 class="stat-value">
 
-            <h3><?= $cancelados ?></h3>
+                            <?= $totalServicos ?>
 
-            <p>Cancelados</p>
+                        </h2>
 
-        </div>
+                        <span class="stat-description">
 
-    </div>
+                            Serviços disponíveis
 
-    <h2>Acesso Rápido</h2>
+                        </span>
 
-    <div class="painel-cards">
+                    </div>
 
-        <a href="listar_agendamentos.php" class="btn">
-            📅 Agendamentos
-        </a>
+                    <div class="stat-icon">
 
-        <a href="listar_clientes.php" class="btn">
-            👥 Clientes
-        </a>
+                        <i class="fa-solid fa-scissors"></i>
 
-        <a href="listar_profissionais.php" class="btn">
-            👩‍💼 Profissionais
-        </a>
+                    </div>
 
-        <a href="listar_servicos.php" class="btn">
-            💇 Serviços
-        </a>
+                </div>
 
-        <a href="listar_horarios.php" class="btn">
-            🕒 Horários
-        </a>
+                <div class="stat-card card-agendamentos">
 
-        <a href="logout.php" class="btn btn-sair">
-            🚪 Sair
-        </a>
+                    <div class="stat-info">
+
+                        <span class="stat-title">
+
+                            Horários
+
+                        </span>
+
+                        <h2 class="stat-value">
+
+                            <?= $totalHorarios ?>
+
+                        </h2>
+
+                        <span class="stat-description">
+
+                            Horários cadastrados
+
+                        </span>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i class="fa-regular fa-clock"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+                        <!-- =====================================================
+                 RESUMO E STATUS
+            ====================================================== -->
+
+            <div class="dashboard-row">
+
+                <!-- Resumo -->
+
+                <div class="widget">
+
+                    <div class="widget-header">
+
+                        <h2>Resumo Geral</h2>
+
+                    </div>
+
+                    <div class="widget-body">
+
+                        <div class="activity">
+
+                            <div class="activity-icon">
+
+                                <i class="fa-solid fa-calendar-day"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>Agendamentos de Hoje</strong>
+
+                                <span>
+
+                                    <?= $agendamentosHoje ?> atendimento(s) agendado(s).
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="activity">
+
+                            <div class="activity-icon">
+
+                                <i class="fa-solid fa-calendar-check"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>Agendamentos do Mês</strong>
+
+                                <span>
+
+                                    <?= $agendamentosMes ?> atendimento(s) registrados neste mês.
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Status -->
+
+                <div class="widget">
+
+                    <div class="widget-header">
+
+                        <h2>Status</h2>
+
+                    </div>
+
+                    <div class="widget-body">
+
+                        <div class="status-list">
+
+                            <div class="status-item">
+
+                                <span class="status-label">
+
+                                    Confirmados
+
+                                </span>
+
+                                <span class="badge badge-sucesso">
+
+                                    <?= $confirmados ?>
+
+                                </span>
+
+                            </div>
+
+                            <div class="progress">
+
+                                <div class="progress-bar" style="width:100%"></div>
+
+                            </div>
+
+                            <div class="status-item">
+
+                                <span class="status-label">
+
+                                    Pendentes
+
+                                </span>
+
+                                <span class="badge badge-alerta">
+
+                                    <?= $pendentes ?>
+
+                                </span>
+
+                            </div>
+
+                            <div class="progress">
+
+                                <div class="progress-bar" style="width:70%"></div>
+
+                            </div>
+
+                            <div class="status-item">
+
+                                <span class="status-label">
+
+                                    Cancelados
+
+                                </span>
+
+                                <span class="badge badge-erro">
+
+                                    <?= $cancelados ?>
+
+                                </span>
+
+                            </div>
+
+                            <div class="progress">
+
+                                <div class="progress-bar" style="width:35%"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =====================================================
+                 ACESSO RÁPIDO
+            ====================================================== -->
+
+            <div class="painel">
+
+                <div class="painel-header">
+
+                    <h2>Acesso Rápido</h2>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <a href="listar_agendamentos.php" class="stat-card">
+
+                        <div class="stat-info">
+
+                            <span class="stat-title">
+
+                                Agendamentos
+
+                            </span>
+
+                        </div>
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+                    </a>
+
+                    <a href="listar_clientes.php" class="stat-card">
+
+                        <div class="stat-info">
+
+                            <span class="stat-title">
+
+                                Clientes
+
+                            </span>
+
+                        </div>
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+                    </a>
+
+                    <a href="listar_profissionais.php" class="stat-card">
+
+                        <div class="stat-info">
+
+                            <span class="stat-title">
+
+                                Profissionais
+
+                            </span>
+
+                        </div>
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-user-tie"></i>
+
+                        </div>
+
+                    </a>
+
+                    <a href="listar_servicos.php" class="stat-card">
+
+                        <div class="stat-info">
+
+                            <span class="stat-title">
+
+                                Serviços
+
+                            </span>
+
+                        </div>
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-scissors"></i>
+
+                        </div>
+
+                    </a>
+
+                    <a href="listar_horarios.php" class="stat-card">
+
+                        <div class="stat-info">
+
+                            <span class="stat-title">
+
+                                Horários
+
+                            </span>
+
+                        </div>
+
+                        <div class="stat-icon">
+
+                            <i class="fa-regular fa-clock"></i>
+
+                        </div>
+
+                    </a>
+
+                    <a href="logout.php" class="stat-card">
+
+                        <div class="stat-info">
+
+                            <span class="stat-title">
+
+                                Sair do Sistema
+
+                            </span>
+
+                        </div>
+
+                        <div class="stat-icon">
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
 
     </div>
 
 </div>
 
-</body>
+<?php
 
-</html>
+require_once "includes/admin_footer.php";
+
+?>

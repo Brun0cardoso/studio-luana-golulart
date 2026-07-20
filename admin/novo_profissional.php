@@ -3,105 +3,99 @@
 require_once "../verificar_sessao.php";
 require_once "../config/conexao.php";
 
+require_once "includes/admin_header.php";
+require_once "includes/sidebar.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<main class="conteudo-admin">
 
-<head>
+    <div class="topbar">
 
-    <meta charset="UTF-8">
+        <div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <h1>Novo Profissional</h1>
 
-    <title>Novo Profissional | Studio Luana Goulart</title>
+            <p>Cadastre um novo profissional para o Studio.</p>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+        </div>
 
-</head>
+    </div>
 
-<body>
+    <div class="container-admin">
 
-<div class="container">
+        <div class="painel">
 
-    <h1>Novo Profissional</h1>
+            <form action="salvar_profissional.php" method="POST" class="form-admin">
 
-    <p class="subtitulo">
+                <div class="form-group">
 
-        Cadastre um novo profissional.
+                    <label for="nome">Nome Completo</label>
 
-    </p>
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        maxlength="120"
+                        required>
 
-    <form action="salvar_profissional.php" method="POST">
+                </div>
 
-        <label for="nome">
+                <div class="form-group">
 
-            Nome
+                    <label for="especialidade">Especialidade</label>
 
-        </label>
+                    <input
+                        type="text"
+                        id="especialidade"
+                        name="especialidade"
+                        maxlength="120"
+                        placeholder="Ex.: Extensão de Cílios"
+                        required>
 
-        <input
-            type="text"
-            id="nome"
-            name="nome"
-            maxlength="120"
-            required>
+                </div>
 
-        <label for="especialidade">
+                <div class="form-group">
 
-            Especialidade
+                    <label for="ativo">Status</label>
 
-        </label>
+                    <select id="ativo" name="ativo">
 
-        <input
-            type="text"
-            id="especialidade"
-            name="especialidade"
-            maxlength="120"
-            required>
+                        <option value="1" selected>Ativo</option>
 
-        <label for="ativo">
+                        <option value="0">Inativo</option>
 
-            Status
+                    </select>
 
-        </label>
+                </div>
 
-        <select
-            id="ativo"
-            name="ativo">
+                <div class="form-acoes">
 
-            <option value="1" selected>
+                    <button type="submit" class="btn">
 
-                Ativo
+                        <i class="fa-solid fa-floppy-disk"></i>
 
-            </option>
+                        Salvar Profissional
 
-            <option value="0">
+                    </button>
 
-                Inativo
+                    <a href="listar_profissionais.php" class="btn btn-secundario">
 
-            </option>
+                        <i class="fa-solid fa-arrow-left"></i>
 
-        </select>
+                        Voltar
 
-        <br><br>
+                    </a>
 
-        <button type="submit">
+                </div>
 
-            Salvar
+            </form>
 
-        </button>
+        </div>
 
-        <a href="listar_profissionais.php" class="btn">
+    </div>
 
-            Cancelar
+</main>
 
-        </a>
-
-    </form>
-
-</div>
-
-</body>
-
-</html>
+<?php
+require_once "includes/admin_footer.php";
+?>

@@ -2,83 +2,159 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Painel Administrativo | Studio Luana Goulart</title>
+
+    <title>Login | Painel Administrativo - Studio Luana Goulart</title>
+
     <link rel="stylesheet" href="../assets/css/style.css">
+
     <link rel="icon" href="../assets/images/favicon.ico">
+    
+    <link rel="stylesheet" href="../assets/css/admin.css">
+
 </head>
 
 <body>
 
-    <div class="container">
+    <!-- =====================================================
+         PÁGINA DE LOGIN
+    ====================================================== -->
 
-        <h1>Studio Luana Goulart</h1>
-        <p class="subtitulo">Faça login para acessar o sistema ADM.</p>
+    <div class="login-page">
 
-        <?php
+        <!-- Card -->
 
-        if (isset($_GET["erro"])) {
+        <div class="login-card">
 
-            if ($_GET["erro"] === "login") {
+            <!-- Logo -->
 
-                echo '<div class="mensagem-erro">
-                Login inválido. Verifique o e-mail e a senha.
-              </div>';
-            }
+            <div class="login-logo">
 
-            if ($_GET["erro"] === "campos") {
+                <div class="logo-circle">
 
-                echo '<div class="mensagem-erro">
-                Preencha todos os campos.
-              </div>';
-            }
-        }
+                    LG
 
-        ?>
-        <form action="autenticar.php" method="POST">
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Digite seu e-mail"
-                    autocomplete="email"
-                    required>
+                <h1>Studio</h1>
+
+                <span>Luana Goulart</span>
+
             </div>
 
-            <div class="form-group">
-                <label for="senha">Senha</label>
-                <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="Digite sua senha"
-                    autocomplete="current-password"
-                    required>
+            <!-- Título -->
+
+            <h2>Painel Administrativo</h2>
+
+            <p class="subtitulo">
+
+                Faça login para acessar o sistema.
+
+            </p>
+
+            <!-- Mensagens -->
+
+            <?php
+
+            if (isset($_GET["erro"])) {
+
+                if ($_GET["erro"] === "login") {
+
+                    echo '
+                    <div class="mensagem-erro">
+
+                        Login inválido.<br>
+                        Verifique o e-mail e a senha.
+
+                    </div>';
+                }
+
+                if ($_GET["erro"] === "campos") {
+
+                    echo '
+                    <div class="mensagem-erro">
+
+                        Preencha todos os campos.
+
+                    </div>';
+                }
+            }
+
+            ?>
+
+            <!-- Formulário -->
+
+            <form action="autenticar.php" method="POST">
+
+                <div class="form-group">
+
+                    <label for="email">
+
+                        E-mail
+
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="senha">
+
+                        Senha
+
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required>
+
+                </div>
+
+                <button type="submit" class="btn btn-block">
+
+                    Entrar no Painel
+
+                </button>
+
+            </form>
+
+            <!-- Botão voltar -->
+
+            <div class="acoes-login">
+
+                <a href="../index.php" class="btn-secundario">
+
+                    ← Voltar ao Site
+
+                </a>
+
             </div>
 
-            <button type="submit" class="btn btn-block">
-                Entrar
-            </button>
+            <!-- Informação -->
 
-        </form>
+            <div class="dica-navegacao">
 
-        <!-- Coloque aqui -->
-        <div class="acoes-login">
+                <strong>Fluxo:</strong>
 
-            <a href="../index.php" class="btn-secundario">
+                Login → Painel → Confirmar ou Reagendar Atendimento.
 
-                ← Voltar ao Site
+            </div>
 
-            </a>
-
-        </div>
-
-        <div class="dica-navegacao">
-            <strong>Fluxo:</strong> Login -> Painel -> Confirmar ou reagendar atendimento.
         </div>
 
     </div>

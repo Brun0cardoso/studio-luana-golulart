@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Editar Agendamento
+| Novo Agendamento
 |--------------------------------------------------------------------------
 */
 
@@ -11,43 +11,11 @@ require_once "../config/conexao.php";
 
 /*
 |--------------------------------------------------------------------------
-| Verifica o ID
-|--------------------------------------------------------------------------
-*/
-
-if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
-
-    header("Location: listar_agendamentos.php");
-    exit();
-
-}
-
-$id = (int) $_GET["id"];
-
-/*
-|--------------------------------------------------------------------------
-| Carrega os dados
+| Carrega os dados dos selects
 |--------------------------------------------------------------------------
 */
 
 try {
-
-    $stmt = $pdo->prepare("
-        SELECT *
-        FROM agendamentos
-        WHERE id = ?
-    ");
-
-    $stmt->execute([$id]);
-
-    $agendamento = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$agendamento) {
-
-        header("Location: listar_agendamentos.php");
-        exit();
-
-    }
 
     $clientes = $pdo->query("
         SELECT id, nome
@@ -56,7 +24,7 @@ try {
     ")->fetchAll(PDO::FETCH_ASSOC);
 
     $servicos = $pdo->query("
-        SELECT id, nome
+        SELECT id, nome, valor
         FROM servicos
         WHERE ativo = 1
         ORDER BY nome
@@ -78,7 +46,7 @@ try {
 
 } catch (PDOException $e) {
 
-    die("Erro ao carregar o agendamento: " . $e->getMessage());
+    die("Erro ao carregar os dados: " . $e->getMessage());
 
 }
 
@@ -99,9 +67,9 @@ require_once "includes/sidebar.php";
 
         <div>
 
-            <h1>Editar Agendamento</h1>
+            <h1>Novo Agendamento</h1>
 
-            <p>Atualize as informações do agendamento.</p>
+            <p>Cadastre um novo agendamento para o Studio.</p>
 
         </div>
 
@@ -111,29 +79,21 @@ require_once "includes/sidebar.php";
 
         <div class="painel">
 
-            <form action="atualizar_agendamento.php" method="POST" class="form-admin">
-
-                <input
-                    type="hidden"
-                    name="id"
-                    value="<?= $agendamento["id"] ?>">
+            <form action="salvar_agendamento.php" method="POST" class="form-admin">
 
                 <div class="form-group">
 
                     <label for="cliente_id">Cliente</label>
 
-                    <select
-                        id="cliente_id"
-                        name="cliente_id"
-                        required>
+                    <select id="cliente_id" name="cliente_id" required>
+
+                        <option value="">Selecione o cliente</option>
 
                         <?php foreach ($clientes as $cliente): ?>
 
-                            <option
-                                value="<?= $cliente["id"] ?>"
-                                <?= $cliente["id"] == $agendamento["cliente_id"] ? "selected" : "" ?>>
+                            <option value="<?= $cliente["id"]; ?>">
 
-                                <?= htmlspecialchars($cliente["nome"]) ?>
+                                <?= htmlspecialchars($cliente["nome"]); ?>
 
                             </option>
 
@@ -147,18 +107,17 @@ require_once "includes/sidebar.php";
 
                     <label for="servico_id">Serviço</label>
 
-                    <select
-                        id="servico_id"
-                        name="servico_id"
-                        required>
+                    <select id="servico_id" name="servico_id" required>
+
+                        <option value="">Selecione o serviço</option>
 
                         <?php foreach ($servicos as $servico): ?>
 
-                            <option
-                                value="<?= $servico["id"] ?>"
-                                <?= $servico["id"] == $agendamento["servico_id"] ? "selected" : "" ?>>
+                            <option value="<?= $servico["id"]; ?>">
 
-                                <?= htmlspecialchars($servico["nome"]) ?>
+                                <?= htmlspecialchars($servico["nome"]); ?>
+
+                                - R$ <?= number_format($servico["valor"], 2, ",", "."); ?>
 
                             </option>
 
@@ -172,18 +131,15 @@ require_once "includes/sidebar.php";
 
                     <label for="profissional_id">Profissional</label>
 
-                    <select
-                        id="profissional_id"
-                        name="profissional_id"
-                        required>
+                    <select id="profissional_id" name="profissional_id" required>
+
+                        <option value="">Selecione o profissional</option>
 
                         <?php foreach ($profissionais as $profissional): ?>
 
-                            <option
-                                value="<?= $profissional["id"] ?>"
-                                <?= $profissional["id"] == $agendamento["profissional_id"] ? "selected" : "" ?>>
+                            <option value="<?= $profissional["id"]; ?>">
 
-                                <?= htmlspecialchars($profissional["nome"]) ?>
+                                <?= htmlspecialchars($profissional["nome"]); ?>
 
                             </option>
 
@@ -201,7 +157,7 @@ require_once "includes/sidebar.php";
                         type="date"
                         id="data_agendamento"
                         name="data_agendamento"
-                        value="<?= $agendamento["data_agendamento"] ?>"
+                        min="<?= date("Y-m-d"); ?>"
                         required>
 
                 </div>
@@ -210,18 +166,15 @@ require_once "includes/sidebar.php";
 
                     <label for="horario_id">Horário</label>
 
-                    <select
-                        id="horario_id"
-                        name="horario_id"
-                        required>
+                    <select id="horario_id" name="horario_id" required>
+
+                        <option value="">Selecione o horário</option>
 
                         <?php foreach ($horarios as $horario): ?>
 
-                            <option
-                                value="<?= $horario["id"] ?>"
-                                <?= $horario["id"] == $agendamento["horario_id"] ? "selected" : "" ?>>
+                            <option value="<?= $horario["id"]; ?>">
 
-                                <?= date("H:i", strtotime($horario["horario"])) ?>
+                                <?= date("H:i", strtotime($horario["horario"])); ?>
 
                             </option>
 
@@ -235,33 +188,13 @@ require_once "includes/sidebar.php";
 
                     <label for="status">Status</label>
 
-                    <select
-                        id="status"
-                        name="status">
+                    <select id="status" name="status">
 
-                        <option
-                            value="Pendente"
-                            <?= $agendamento["status"] == "Pendente" ? "selected" : "" ?>>
+                        <option value="Confirmado">Confirmado</option>
 
-                            Pendente
+                        <option value="Pendente" selected>Pendente</option>
 
-                        </option>
-
-                        <option
-                            value="Confirmado"
-                            <?= $agendamento["status"] == "Confirmado" ? "selected" : "" ?>>
-
-                            Confirmado
-
-                        </option>
-
-                        <option
-                            value="Cancelado"
-                            <?= $agendamento["status"] == "Cancelado" ? "selected" : "" ?>>
-
-                            Cancelado
-
-                        </option>
+                        <option value="Cancelado">Cancelado</option>
 
                     </select>
 
@@ -274,7 +207,8 @@ require_once "includes/sidebar.php";
                     <textarea
                         id="observacoes"
                         name="observacoes"
-                        rows="4"><?= htmlspecialchars($agendamento["observacoes"]) ?></textarea>
+                        rows="5"
+                        placeholder="Observações sobre o agendamento..."></textarea>
 
                 </div>
 
@@ -282,9 +216,9 @@ require_once "includes/sidebar.php";
 
                     <button type="submit" class="btn">
 
-                        <i class="fa-solid fa-floppy-disk"></i>
+                        <i class="fa-solid fa-calendar-check"></i>
 
-                        Salvar Alterações
+                        Salvar Agendamento
 
                     </button>
 

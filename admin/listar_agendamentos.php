@@ -1,5 +1,11 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Listagem de Agendamentos
+|--------------------------------------------------------------------------
+*/
+
 require_once "../verificar_sessao.php";
 require_once "../config/conexao.php";
 
@@ -32,174 +38,202 @@ try {
         LEFT JOIN profissionais p
             ON p.id = ag.profissional_id
 
-        ORDER BY ag.data_agendamento ASC, h.horario ASC
+        ORDER BY
+            ag.data_agendamento ASC,
+            h.horario ASC
     ";
 
-    $stmt = $pdo->query($sql);
-
-    $agendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    $agendamentos = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
 
-    die("Erro ao carregar os agendamentos: " . $e->getMessage());
-
+    die("Erro: " . $e->getMessage());
 }
+
+require_once "includes/admin_header.php";
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<div class="admin-layout">
 
-<head>
+    <?php require_once "includes/sidebar.php"; ?>
 
-    <meta charset="UTF-8">
+    <div class="conteudo-admin">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php require_once "includes/topbar.php"; ?>
 
-    <title>Agendamentos | Studio Luana Goulart</title>
+        <main class="container-admin fade">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+            <div class="page-header">
 
-</head>
+                <div>
 
-<body>
+                    <h1 class="page-title">
 
-<div class="container">
+                        Agendamentos
 
-    <h1>Agendamentos</h1>
+                    </h1>
 
-    <p class="subtitulo">
-        Gerencie todos os agendamentos cadastrados.
-    </p>
+                    <p class="page-description">
 
-    <table>
+                        Gerencie todos os agendamentos do Studio Luana Goulart.
 
-        <thead>
+                    </p>
 
-            <tr>
+                </div>
 
-                <th>Cliente</th>
-                <th>Telefone</th>
-                <th>Serviço</th>
-                <th>Profissional</th>
-                <th>Data</th>
-                <th>Horário</th>
-                <th>Status</th>
-                <th>Ações</th>
+                <div class="flex">
 
-            </tr>
+                    <a href="novo_agendamento.php" class="btn">
 
-        </thead>
+                        <i class="fa-solid fa-calendar-plus"></i>
 
-        <tbody>
+                        Novo Agendamento
 
-        <?php if (empty($agendamentos)): ?>
+                    </a>
 
-            <tr>
+                    <a href="dashboard.php" class="btn btn-secundario">
 
-                <td colspan="8" style="text-align:center">
+                        <i class="fa-solid fa-arrow-left"></i>
 
-                    Nenhum agendamento encontrado.
+                        Dashboard
 
-                </td>
+                    </a>
 
-            </tr>
+                </div>
 
-        <?php else: ?>
+            </div>
+            <div class="painel">
 
-            <?php foreach ($agendamentos as $agendamento): ?>
+                <div class="table-responsive">
 
-                <tr>
+                    <table class="tabela">
 
-                    <td><?= htmlspecialchars($agendamento["cliente"]) ?></td>
+                        <thead>
 
-                    <td><?= htmlspecialchars($agendamento["telefone"]) ?></td>
+                            <tr>
 
-                    <td><?= htmlspecialchars($agendamento["servico"]) ?></td>
+                                <th>Cliente</th>
+                                <th>Telefone</th>
+                                <th>Serviço</th>
+                                <th>Profissional</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Status</th>
+                                <th>Ações</th>
 
-                    <td>
+                            </tr>
 
-                        <?= $agendamento["profissional"]
-                            ? htmlspecialchars($agendamento["profissional"])
-                            : "-" ?>
+                        </thead>
 
-                    </td>
+                        <tbody>
 
-                    <td><?= date("d/m/Y", strtotime($agendamento["data_agendamento"])) ?></td>
+                            <?php if (empty($agendamentos)): ?>
 
-                    <td><?= date("H:i", strtotime($agendamento["horario"])) ?></td>
+                                <tr>
 
-                    <td>
+                                    <td colspan="8" style="text-align:center">
 
-                        <?php
+                                        Nenhum agendamento encontrado.
 
-                        switch ($agendamento["status"]) {
+                                    </td>
 
-                            case "Confirmado":
-                                echo "🟢 Confirmado";
-                                break;
+                                </tr>
 
-                            case "Cancelado":
-                                echo "🔴 Cancelado";
-                                break;
+                            <?php else: ?>
 
-                            default:
-                                echo "🟡 Pendente";
+                                <?php foreach ($agendamentos as $agendamento): ?>
 
-                        }
+                                    <tr>
 
-                        ?>
+                                        <td><?= htmlspecialchars($agendamento["cliente"]) ?></td>
 
-                    </td>
+                                        <td><?= htmlspecialchars($agendamento["telefone"]) ?></td>
 
-                    <td>
+                                        <td><?= htmlspecialchars($agendamento["servico"]) ?></td>
 
-                        <a href="confirmar_agendamento.php?id=<?= $agendamento["id"] ?>">
+                                        <td><?= htmlspecialchars($agendamento["profissional"] ?? "-") ?></td>
 
-                            Confirmar
+                                        <td><?= date("d/m/Y", strtotime($agendamento["data_agendamento"])) ?></td>
 
-                        </a>
+                                        <td><?= date("H:i", strtotime($agendamento["horario"])) ?></td>
 
-                        |
+                                        <td>
 
-                        <a href="editar_agendamento.php?id=<?= $agendamento["id"] ?>">
+                                            <?php if ($agendamento["status"] == "Confirmado"): ?>
 
-                            Editar
+                                                <span class="badge badge-sucesso">
 
-                        </a>
+                                                    Confirmado
 
-                        |
+                                                </span>
 
-                        <a
-                            href="excluir_agendamento.php?id=<?= $agendamento["id"] ?>"
-                            onclick="return confirm('Deseja realmente excluir este agendamento?');">
+                                            <?php elseif ($agendamento["status"] == "Cancelado"): ?>
 
-                            Excluir
+                                                <span class="badge badge-erro">
 
-                        </a>
+                                                    Cancelado
 
-                    </td>
+                                                </span>
 
-                </tr>
+                                            <?php else: ?>
 
-            <?php endforeach; ?>
+                                                <span class="badge badge-alerta">
 
-        <?php endif; ?>
+                                                    Pendente
 
-        </tbody>
+                                                </span>
 
-    </table>
+                                            <?php endif; ?>
 
-    <br>
+                                        </td>
 
-    <a href="dashboard.php" class="btn">
+                                        <td>
 
-        ← Voltar ao Painel
+                                            <a href="confirmar_agendamento.php?id=<?= $agendamento["id"] ?>" class="btn btn-sucesso">
 
-    </a>
+                                                Confirmar
+
+                                            </a>
+
+                                            <a href="editar_agendamento.php?id=<?= $agendamento["id"] ?>" class="btn">
+
+                                                Editar
+
+                                            </a>
+
+                                            <a
+                                                href="excluir_agendamento.php?id=<?= $agendamento["id"] ?>"
+                                                class="btn btn-perigo"
+                                                onclick="return confirm('Deseja realmente excluir este agendamento?');">
+
+                                                Excluir
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
 
 </div>
 
-</body>
+<?php
 
-</html>
+require_once "includes/admin_footer.php";
+
+?>

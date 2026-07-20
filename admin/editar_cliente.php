@@ -1,11 +1,17 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Editar Cliente
+|--------------------------------------------------------------------------
+*/
+
 require_once "../verificar_sessao.php";
 require_once "../config/conexao.php";
 
 /*
 |--------------------------------------------------------------------------
-| Editar Cliente
+| Busca o cliente
 |--------------------------------------------------------------------------
 */
 
@@ -48,101 +54,113 @@ try {
 
 }
 
+/*
+|--------------------------------------------------------------------------
+| Layout
+|--------------------------------------------------------------------------
+*/
+
+require_once "includes/admin_header.php";
+require_once "includes/sidebar.php";
+
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<main class="conteudo-admin">
 
-<head>
+    <div class="topbar">
 
-    <meta charset="UTF-8">
+        <div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <h1>Editar Cliente</h1>
 
-    <title>Editar Cliente | Studio Luana Goulart</title>
+            <p>Atualize os dados do cliente.</p>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+        </div>
 
-</head>
+    </div>
 
-<body>
+    <div class="container-admin">
 
-<div class="container">
+        <div class="painel">
 
-    <h1>Editar Cliente</h1>
+            <form action="atualizar_cliente.php" method="POST" class="form-admin">
 
-    <p class="subtitulo">
+                <input
+                    type="hidden"
+                    name="id"
+                    value="<?= $cliente["id"]; ?>">
 
-        Atualize os dados do cliente.
+                <div class="form-group">
 
-    </p>
+                    <label for="nome">Nome Completo</label>
 
-    <form action="atualizar_cliente.php" method="POST">
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        maxlength="120"
+                        value="<?= htmlspecialchars($cliente["nome"]); ?>"
+                        required>
 
-        <input
-            type="hidden"
-            name="id"
-            value="<?= $cliente["id"]; ?>">
+                </div>
 
-        <label for="nome">
+                <div class="form-group">
 
-            Nome
+                    <label for="telefone">Telefone</label>
 
-        </label>
+                    <input
+                        type="tel"
+                        id="telefone"
+                        name="telefone"
+                        maxlength="20"
+                        value="<?= htmlspecialchars($cliente["telefone"]); ?>"
+                        required>
 
-        <input
-            type="text"
-            id="nome"
-            name="nome"
-            maxlength="120"
-            value="<?= htmlspecialchars($cliente["nome"]); ?>"
-            required>
+                </div>
 
-        <label for="telefone">
+                <div class="form-group">
 
-            Telefone
+                    <label for="email">E-mail</label>
 
-        </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        maxlength="120"
+                        value="<?= htmlspecialchars($cliente["email"]); ?>">
 
-        <input
-            type="tel"
-            id="telefone"
-            name="telefone"
-            maxlength="20"
-            value="<?= htmlspecialchars($cliente["telefone"]); ?>"
-            required>
+                </div>
 
-        <label for="email">
+                <div class="form-acoes">
 
-            E-mail
+                    <button type="submit" class="btn">
 
-        </label>
+                        <i class="fa-solid fa-floppy-disk"></i>
 
-        <input
-            type="email"
-            id="email"
-            name="email"
-            maxlength="120"
-            value="<?= htmlspecialchars($cliente["email"]); ?>">
+                        Salvar Alterações
 
-        <br><br>
+                    </button>
 
-        <button type="submit">
+                    <a href="listar_clientes.php" class="btn btn-secundario">
 
-            Salvar Alterações
+                        <i class="fa-solid fa-arrow-left"></i>
 
-        </button>
+                        Voltar
 
-        <a href="listar_clientes.php" class="btn">
+                    </a>
 
-            Cancelar
+                </div>
 
-        </a>
+            </form>
 
-    </form>
+        </div>
 
-</div>
+    </div>
 
-</body>
+</main>
 
-</html>
+<?php
+
+require_once "includes/admin_footer.php";
+
+?>

@@ -1,13 +1,13 @@
 <?php
 
-require_once "../verificar_sessao.php";
-require_once "../config/conexao.php";
-
 /*
 |--------------------------------------------------------------------------
-| Lista todos os horários
+| Listagem de Horários
 |--------------------------------------------------------------------------
 */
+
+require_once "../verificar_sessao.php";
+require_once "../config/conexao.php";
 
 try {
 
@@ -17,144 +17,176 @@ try {
             horario,
             ativo
         FROM horarios
-        ORDER BY horario
+        ORDER BY horario ASC
     ";
 
-    $stmt = $pdo->query($sql);
-
-    $horarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    $horarios = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
 
     die("Erro ao carregar os horários: " . $e->getMessage());
-
 }
+
+require_once "includes/admin_header.php";
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<div class="admin-layout">
 
-<head>
+    <?php require_once "includes/sidebar.php"; ?>
 
-    <meta charset="UTF-8">
+    <div class="conteudo-admin">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php require_once "includes/topbar.php"; ?>
 
-    <title>Horários | Studio Luana Goulart</title>
+        <main class="container-admin fade">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+            <!-- =====================================================
+                 CABEÇALHO DA PÁGINA
+            ====================================================== -->
 
-</head>
+            <div class="page-header">
 
-<body>
+                <div>
 
-<div class="container">
+                    <h1 class="page-title">
 
-    <h1>Horários</h1>
+                        Horários
 
-    <p class="subtitulo">
+                    </h1>
 
-        Gerencie os horários disponíveis para agendamento.
+                    <p class="page-description">
 
-    </p>
+                        Gerencie os horários disponíveis para agendamento.
 
-    <p>
+                    </p>
 
-        <a href="novo_horario.php" class="btn">
+                </div>
 
-            + Novo Horário
+                <a href="novo_horario.php" class="btn">
 
-        </a>
+                    <i class="fa-solid fa-clock"></i>
 
-    </p>
+                    Novo Horário
 
-    <table>
+                </a>
 
-        <thead>
+            </div>
 
-            <tr>
+            <!-- =====================================================
+                 TABELA
+            ====================================================== -->
 
-                <th>Horário</th>
-                <th>Status</th>
-                <th>Ações</th>
+            <div class="painel">
 
-            </tr>
+                <div class="table-responsive">
 
-        </thead>
+                    <table class="tabela">
 
-        <tbody>
+                        <thead>
 
-        <?php if (count($horarios) > 0): ?>
+                            <tr>
 
-            <?php foreach ($horarios as $horario): ?>
+                                <th>Horário</th>
+                                <th>Status</th>
+                                <th width="220">Ações</th>
 
-                <tr>
+                            </tr>
 
-                    <td>
+                        </thead>
 
-                        <?= date("H:i", strtotime($horario["horario"])) ?>
+                        <tbody>
 
-                    </td>
+                            <?php if (empty($horarios)): ?>
 
-                    <td>
+                                <tr>
 
-                        <?= $horario["ativo"] ? "🟢 Ativo" : "🔴 Inativo" ?>
+                                    <td colspan="3" style="text-align:center; padding:30px;">
 
-                    </td>
+                                        Nenhum horário cadastrado.
 
-                    <td>
+                                    </td>
 
-                        <a href="editar_horario.php?id=<?= $horario["id"] ?>">
+                                </tr>
 
-                            Editar
+                            <?php else: ?>
 
-                        </a>
+                                <?php foreach ($horarios as $horario): ?>
 
-                        |
+                                    <tr>
 
-                        <a
-                            href="excluir_horario.php?id=<?= $horario["id"] ?>"
-                            onclick="return confirm('Deseja realmente excluir este horário?')">
+                                        <td>
 
-                            Excluir
+                                            <?= date("H:i", strtotime($horario["horario"])); ?>
 
-                        </a>
+                                        </td>
 
-                    </td>
+                                        <td>
 
-                </tr>
+                                            <?php if ($horario["ativo"]): ?>
 
-            <?php endforeach; ?>
+                                                <span class="badge badge-sucesso">
 
-        <?php else: ?>
+                                                    Ativo
 
-            <tr>
+                                                </span>
 
-                <td colspan="3">
+                                            <?php else: ?>
 
-                    Nenhum horário cadastrado.
+                                                <span class="badge badge-erro">
 
-                </td>
+                                                    Inativo
 
-            </tr>
+                                                </span>
 
-        <?php endif; ?>
+                                            <?php endif; ?>
 
-        </tbody>
+                                        </td>
 
-    </table>
+                                        <td class="acoes">
 
-    <br>
+                                            <a href="editar_horario.php?id=<?= $horario["id"]; ?>" class="btn">
 
-    <a href="dashboard.php" class="btn">
+                                                <i class="fa-solid fa-pen"></i>
 
-        ← Voltar ao Painel
+                                                Editar
 
-    </a>
+                                            </a>
+
+                                            <a
+                                                href="excluir_horario.php?id=<?= $horario["id"]; ?>"
+                                                class="btn btn-perigo"
+                                                onclick="return confirm('Deseja realmente excluir este horário?')">
+
+                                                <i class="fa-solid fa-trash"></i>
+
+                                                Excluir
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
 
 </div>
 
-</body>
+<?php
 
-</html>
+require_once "includes/admin_footer.php";
+
+?>

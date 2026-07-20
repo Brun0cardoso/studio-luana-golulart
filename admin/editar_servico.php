@@ -1,11 +1,17 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Editar Serviço
+|--------------------------------------------------------------------------
+*/
+
 require_once "../verificar_sessao.php";
 require_once "../config/conexao.php";
 
 /*
 |--------------------------------------------------------------------------
-| Editar Serviço
+| Busca o serviço
 |--------------------------------------------------------------------------
 */
 
@@ -49,115 +55,143 @@ try {
 
 }
 
+/*
+|--------------------------------------------------------------------------
+| Layout
+|--------------------------------------------------------------------------
+*/
+
+require_once "includes/admin_header.php";
+require_once "includes/sidebar.php";
+
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<main class="conteudo-admin">
 
-<head>
+    <div class="topbar">
 
-    <meta charset="UTF-8">
+        <div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <h1>Editar Serviço</h1>
 
-    <title>Editar Serviço</title>
+            <p>Atualize as informações do serviço.</p>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+        </div>
 
-</head>
+    </div>
 
-<body>
+    <div class="container-admin">
 
-<div class="container">
+        <div class="painel">
 
-    <h1>Editar Serviço</h1>
+            <form action="atualizar_servico.php" method="POST" class="form-admin">
 
-    <p class="subtitulo">
+                <input
+                    type="hidden"
+                    name="id"
+                    value="<?= $servico["id"] ?>">
 
-        Atualize as informações do serviço.
+                <div class="form-group">
 
-    </p>
+                    <label for="nome">Nome do Serviço</label>
 
-    <form action="atualizar_servico.php" method="POST">
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        maxlength="120"
+                        value="<?= htmlspecialchars($servico["nome"]) ?>"
+                        required>
 
-        <input
-            type="hidden"
-            name="id"
-            value="<?= $servico["id"] ?>">
+                </div>
 
-        <label for="nome">Nome do Serviço</label>
+                <div class="form-group">
 
-        <input
-            type="text"
-            id="nome"
-            name="nome"
-            maxlength="120"
-            value="<?= htmlspecialchars($servico["nome"]) ?>"
-            required>
+                    <label for="valor">Valor (R$)</label>
 
-        <label for="valor">Valor (R$)</label>
+                    <input
+                        type="number"
+                        id="valor"
+                        name="valor"
+                        step="0.01"
+                        min="0"
+                        value="<?= $servico["valor"] ?>"
+                        required>
 
-        <input
-            type="number"
-            id="valor"
-            name="valor"
-            step="0.01"
-            min="0"
-            value="<?= $servico["valor"] ?>"
-            required>
+                </div>
 
-        <label for="duracao">Duração (minutos)</label>
+                <div class="form-group">
 
-        <input
-            type="number"
-            id="duracao"
-            name="duracao"
-            min="1"
-            value="<?= $servico["duracao"] ?>"
-            required>
+                    <label for="duracao">Duração (minutos)</label>
 
-        <label for="ativo">Status</label>
+                    <input
+                        type="number"
+                        id="duracao"
+                        name="duracao"
+                        min="1"
+                        value="<?= $servico["duracao"] ?>"
+                        required>
 
-        <select
-            id="ativo"
-            name="ativo">
+                </div>
 
-            <option
-                value="1"
-                <?= $servico["ativo"] ? "selected" : "" ?>>
+                <div class="form-group">
 
-                Ativo
+                    <label for="ativo">Status</label>
 
-            </option>
+                    <select
+                        id="ativo"
+                        name="ativo">
 
-            <option
-                value="0"
-                <?= !$servico["ativo"] ? "selected" : "" ?>>
+                        <option
+                            value="1"
+                            <?= $servico["ativo"] ? "selected" : "" ?>>
 
-                Inativo
+                            Ativo
 
-            </option>
+                        </option>
 
-        </select>
+                        <option
+                            value="0"
+                            <?= !$servico["ativo"] ? "selected" : "" ?>>
 
-        <br><br>
+                            Inativo
 
-        <button type="submit">
+                        </option>
 
-            Salvar Alterações
+                    </select>
 
-        </button>
+                </div>
 
-        <a href="listar_servicos.php" class="btn">
+                <div class="form-acoes">
 
-            Cancelar
+                    <button type="submit" class="btn">
 
-        </a>
+                        <i class="fa-solid fa-floppy-disk"></i>
 
-    </form>
+                        Salvar Alterações
 
-</div>
+                    </button>
 
-</body>
+                    <a href="listar_servicos.php" class="btn btn-secundario">
 
-</html>
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Voltar
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+<?php
+
+require_once "includes/admin_footer.php";
+
+?>

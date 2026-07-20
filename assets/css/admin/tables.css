@@ -1,0 +1,192 @@
+/* ==========================================================
+   TABELAS
+   Studio Luana Goulart
+========================================================== */
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.table-responsive{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border-radius:18px;
+
+}
+
+.tabela{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#FFFFFF;
+
+}
+
+
+/* ==========================================================
+   CABEÇALHO
+========================================================== */
+
+.tabela thead{
+
+    background:#F8F8F8;
+
+}
+
+.tabela thead th{
+
+    padding:18px 20px;
+
+    text-align:left;
+
+    font-size:.90rem;
+
+    font-weight:600;
+
+    color:var(--color-title);
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    border-bottom:2px solid #ECECEC;
+
+    white-space:nowrap;
+
+}
+
+
+/* ==========================================================
+   LINHAS
+========================================================== */
+
+.tabela tbody tr{
+
+    transition:.25s;
+
+}
+
+.tabela tbody tr:hover{
+
+    background:#FAFAFA;
+
+}
+
+
+/* ==========================================================
+   CÉLULAS
+========================================================== */
+
+.tabela td{
+
+    padding:18px 20px;
+
+    color:var(--color-text);
+
+    border-bottom:1px solid #F1F1F1;
+
+    vertical-align:middle;
+
+}
+
+.tabela tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+
+/* ==========================================================
+   COLUNA DE AÇÕES
+========================================================== */
+
+.tabela th:last-child,
+
+.tabela td:last-child{
+
+    text-align:center;
+
+    white-space:nowrap;
+
+}
+
+
+/* ==========================================================
+   BOTÕES DE AÇÃO
+========================================================== */
+
+.acoes{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.acoes .btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+    padding:10px 16px;
+
+    font-size:.85rem;
+
+    min-width:auto;
+
+}
+
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+.tabela a{
+
+    text-decoration:none;
+
+}
+
+
+/* ==========================================================
+   LINHA SEM REGISTROS
+========================================================== */
+
+.tabela tbody td[colspan]{
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    color:var(--color-text-light);
+
+    font-style:italic;
+
+}
+
+
+/* ==========================================================
+   BADGES
+========================================================== */
+
+.tabela .badge{
+
+    min-width:95px;
+
+}

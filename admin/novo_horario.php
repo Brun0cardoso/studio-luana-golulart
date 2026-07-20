@@ -1,92 +1,59 @@
 <?php
 
 require_once "../verificar_sessao.php";
+require_once "../config/conexao.php";
 
+require_once "includes/admin_header.php";
+require_once "includes/sidebar.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<main class="conteudo-admin">
 
-<head>
+    <div class="topbar">
+        <div>
+            <h1>Novo Horário</h1>
+            <p>Cadastre um novo horário disponível para agendamentos.</p>
+        </div>
+    </div>
 
-    <meta charset="UTF-8">
+    <div class="container-admin">
+        <div class="painel">
+            <form action="salvar_horario.php" method="POST" class="form-admin">
+                
+                <div class="form-group">
+                    <label for="horario">Horário</label>
+                    <input 
+                        type="time" 
+                        id="horario" 
+                        name="horario" 
+                        required>
+                </div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <div class="form-group">
+                    <label for="ativo">Status</label>
+                    <select id="ativo" name="ativo">
+                        <option value="1" selected>Ativo</option>
+                        <option value="0">Inativo</option>
+                    </select>
+                </div>
 
-    <title>Novo Horário | Studio Luana Goulart</title>
+                <div class="form-acoes">
+                    <button type="submit" class="btn">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Salvar Horário
+                    </button>
+                    <a href="listar_horarios.php" class="btn btn-secundario">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Voltar
+                    </a>
+                </div>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+            </form>
+        </div>
+    </div>
 
-</head>
+</main>
 
-<body>
-
-<div class="container">
-
-    <h1>Novo Horário</h1>
-
-    <p class="subtitulo">
-
-        Cadastre um novo horário disponível para agendamento.
-
-    </p>
-
-    <form action="salvar_horario.php" method="POST">
-
-        <label for="horario">
-
-            Horário
-
-        </label>
-
-        <input
-            type="time"
-            id="horario"
-            name="horario"
-            required>
-
-        <label for="ativo">
-
-            Status
-
-        </label>
-
-        <select
-            id="ativo"
-            name="ativo">
-
-            <option value="1" selected>
-
-                Ativo
-
-            </option>
-
-            <option value="0">
-
-                Inativo
-
-            </option>
-
-        </select>
-
-        <br><br>
-
-        <button type="submit">
-
-            Salvar Horário
-
-        </button>
-
-        <a href="listar_horarios.php" class="btn">
-
-            Cancelar
-
-        </a>
-
-    </form>
-
-</div>
-
-</body>
-
-</html>
+<?php
+require_once "includes/admin_footer.php";
+?>

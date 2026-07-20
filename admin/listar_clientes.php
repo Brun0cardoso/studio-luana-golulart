@@ -1,13 +1,13 @@
 <?php
 
-require_once "../verificar_sessao.php";
-require_once "../config/conexao.php";
-
 /*
 |--------------------------------------------------------------------------
-| Lista todos os clientes
+| Listagem de Clientes
 |--------------------------------------------------------------------------
 */
+
+require_once "../verificar_sessao.php";
+require_once "../config/conexao.php";
 
 try {
 
@@ -19,146 +19,174 @@ try {
             email,
             criado_em
         FROM clientes
-        ORDER BY nome
+        ORDER BY nome ASC
     ";
 
-    $stmt = $pdo->query($sql);
-
-    $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    $clientes = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
 
     die("Erro ao carregar os clientes: " . $e->getMessage());
-
 }
+
+require_once "includes/admin_header.php";
 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<div class="admin-layout">
 
-<head>
+    <?php require_once "includes/sidebar.php"; ?>
 
-    <meta charset="UTF-8">
+    <div class="conteudo-admin">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?php require_once "includes/topbar.php"; ?>
 
-    <title>Clientes | Studio Luana Goulart</title>
+        <main class="container-admin fade">
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+            <!-- =====================================================
+                 CABEÇALHO DA PÁGINA
+            ====================================================== -->
 
-</head>
+            <div class="page-header">
 
-<body>
+                <div>
 
-<div class="container">
+                    <h1 class="page-title">
 
-    <h1>Clientes</h1>
+                        Clientes
 
-    <p class="subtitulo">
+                    </h1>
 
-        Gerencie os clientes cadastrados.
+                    <p class="page-description">
 
-    </p>
+                        Gerencie todos os clientes cadastrados.
 
-    <p>
+                    </p>
 
-        <a href="novo_cliente.php" class="btn">
+                </div>
 
-            + Novo Cliente
+                <a href="novo_cliente.php" class="btn">
 
-        </a>
+                    <i class="fa-solid fa-user-plus"></i>
 
-    </p>
+                    Novo Cliente
 
-    <table>
+                </a>
 
-        <thead>
+            </div>
 
-            <tr>
+            <!-- =====================================================
+                 TABELA
+            ====================================================== -->
 
-                <th>Nome</th>
+            <div class="painel">
 
-                <th>Telefone</th>
+                <div class="table-responsive">
 
-                <th>E-mail</th>
+                    <table class="tabela">
 
-                <th>Cadastro</th>
+                        <thead>
 
-                <th>Ações</th>
+                            <tr>
 
-            </tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>E-mail</th>
+                                <th>Cadastro</th>
+                                <th width="220">Ações</th>
 
-        </thead>
+                            </tr>
 
-        <tbody>
+                        </thead>
 
-        <?php if (count($clientes) > 0): ?>
+                        <tbody>
 
-            <?php foreach ($clientes as $cliente): ?>
+                            <?php if (empty($clientes)): ?>
 
-                <tr>
+                                <tr>
 
-                    <td><?= htmlspecialchars($cliente["nome"]); ?></td>
+                                    <td colspan="5" style="text-align:center; padding:30px;">
 
-                    <td><?= htmlspecialchars($cliente["telefone"]); ?></td>
+                                        Nenhum cliente cadastrado.
 
-                    <td><?= htmlspecialchars($cliente["email"]); ?></td>
+                                    </td>
 
-                    <td><?= date("d/m/Y H:i", strtotime($cliente["criado_em"])); ?></td>
+                                </tr>
 
-                    <td>
+                            <?php else: ?>
 
-                        <a href="editar_cliente.php?id=<?= $cliente["id"]; ?>">
+                                <?php foreach ($clientes as $cliente): ?>
 
-                            Editar
+                                    <tr>
 
-                        </a>
+                                        <td>
 
-                        |
+                                            <?= htmlspecialchars($cliente["nome"]); ?>
 
-                        <a
-                            href="excluir_cliente.php?id=<?= $cliente["id"]; ?>"
-                            onclick="return confirm('Deseja realmente excluir este cliente?')">
+                                        </td>
 
-                            Excluir
+                                        <td>
 
-                        </a>
+                                            <?= htmlspecialchars($cliente["telefone"]); ?>
 
-                    </td>
+                                        </td>
 
-                </tr>
+                                        <td>
 
-            <?php endforeach; ?>
+                                            <?= htmlspecialchars($cliente["email"]); ?>
 
-        <?php else: ?>
+                                        </td>
 
-            <tr>
+                                        <td>
 
-                <td colspan="5">
+                                            <?= date("d/m/Y H:i", strtotime($cliente["criado_em"])); ?>
 
-                    Nenhum cliente cadastrado.
+                                        </td>
 
-                </td>
+                                        <td class="acoes">
 
-            </tr>
+                                            <a href="editar_cliente.php?id=<?= $cliente["id"]; ?>" class="btn">
 
-        <?php endif; ?>
+                                                <i class="fa-solid fa-pen"></i>
 
-        </tbody>
+                                                Editar
 
-    </table>
+                                            </a>
 
-    <br>
+                                            <a
+                                                href="excluir_cliente.php?id=<?= $cliente["id"]; ?>"
+                                                class="btn btn-perigo"
+                                                onclick="return confirm('Deseja realmente excluir este cliente?')">
 
-    <a href="dashboard.php" class="btn">
+                                                <i class="fa-solid fa-trash"></i>
 
-        ← Voltar ao Painel
+                                                Excluir
 
-    </a>
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
 
 </div>
 
-</body>
+<?php
 
-</html>
+require_once "includes/admin_footer.php";
+
+?>

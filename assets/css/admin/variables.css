@@ -1,0 +1,152 @@
+/* =====================================================
+   VARIÁVEIS
+   Studio Luana Goulart - Painel Administrativo
+===================================================== */
+
+:root{
+
+    /* =====================================================
+       CORES PRINCIPAIS
+    ===================================================== */
+
+    --rosa: #C46F8E;
+    --rosa-hover: #B55C7D;
+    --rosa-claro: #FCEAF2;
+    --rosa-suave: #F8E9EF;
+
+    --branco: #FFFFFF;
+
+    --cinza-50: #FAFAFA;
+    --cinza-100: #F7F5F7;
+    --cinza-200: #EEEEEE;
+    --cinza-300: #E2E2E2;
+    --cinza-400: #CFCFCF;
+
+    --texto: #2D2D2D;
+    --texto-claro: #777777;
+    --texto-suave: #999999;
+
+    --borda: #E7E7E7;
+
+    /* =====================================================
+       CORES DE STATUS
+    ===================================================== */
+
+    --sucesso: #198754;
+    --sucesso-bg: #EAF8EF;
+
+    --erro: #DC3545;
+    --erro-bg: #FDECEC;
+
+    --alerta: #D48806;
+    --alerta-bg: #FFF4D8;
+
+    --info: #0D6EFD;
+    --info-bg: #EAF2FF;
+
+    /* =====================================================
+       TIPOGRAFIA
+    ===================================================== */
+
+    --fonte: "Poppins", sans-serif;
+
+    --fs-12: 12px;
+    --fs-14: 14px;
+    --fs-15: 15px;
+    --fs-16: 16px;
+    --fs-18: 18px;
+    --fs-20: 20px;
+    --fs-24: 24px;
+    --fs-28: 28px;
+    --fs-32: 32px;
+    --fs-40: 40px;
+
+    /* =====================================================
+       PESO DA FONTE
+    ===================================================== */
+
+    --light: 300;
+    --regular: 400;
+    --medium: 500;
+    --semibold: 600;
+    --bold: 700;
+
+    /* =====================================================
+       BORDAS
+    ===================================================== */
+
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --radius-full: 999px;
+
+    /* =====================================================
+       SOMBRAS
+    ===================================================== */
+
+    --shadow-sm: 0 4px 12px rgba(0,0,0,.05);
+
+    --shadow-md: 0 10px 25px rgba(0,0,0,.08);
+
+    --shadow-lg: 0 18px 40px rgba(0,0,0,.12);
+
+    /* =====================================================
+       TRANSIÇÕES
+    ===================================================== */
+
+    --transition-fast: .20s ease;
+
+    --transition: .30s ease;
+
+    --transition-slow: .45s ease;
+
+    /* =====================================================
+       LAYOUT
+    ===================================================== */
+
+    --sidebar-width: 270px;
+
+    --topbar-height: 90px;
+
+    --container-padding: 40px;
+
+    --gap: 25px;
+
+    /* =====================================================
+       Z-INDEX
+    ===================================================== */
+
+    --z-sidebar: 1000;
+
+    --z-topbar: 900;
+
+    --z-dropdown: 950;
+
+    --z-modal: 2000;
+
+    --z-loading: 3000;
+
+        /* =====================================================
+       COMPATIBILIDADE
+    ===================================================== */
+
+    --color-primary: var(--rosa);
+
+    --color-primary-dark: var(--rosa-hover);
+
+    --color-background: var(--cinza-100);
+
+    --color-surface: var(--branco);
+
+    --color-title: var(--texto);
+
+    --color-text: var(--texto);
+
+    --color-text-light: var(--texto-claro);
+
+    --color-border: var(--borda);
+
+    --shadow: var(--shadow-md);
+
+}

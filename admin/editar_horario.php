@@ -1,11 +1,17 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Editar Horário
+|--------------------------------------------------------------------------
+*/
+
 require_once "../verificar_sessao.php";
 require_once "../config/conexao.php";
 
 /*
 |--------------------------------------------------------------------------
-| Editar Horário
+| Busca o horário
 |--------------------------------------------------------------------------
 */
 
@@ -47,101 +53,113 @@ try {
 
 }
 
+/*
+|--------------------------------------------------------------------------
+| Layout
+|--------------------------------------------------------------------------
+*/
+
+require_once "includes/admin_header.php";
+require_once "includes/sidebar.php";
+
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
+<main class="conteudo-admin">
 
-<head>
+    <div class="topbar">
 
-    <meta charset="UTF-8">
+        <div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <h1>Editar Horário</h1>
 
-    <title>Editar Horário | Studio Luana Goulart</title>
+            <p>Atualize o horário disponível para agendamento.</p>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+        </div>
 
-</head>
+    </div>
 
-<body>
+    <div class="container-admin">
 
-<div class="container">
+        <div class="painel">
 
-    <h1>Editar Horário</h1>
+            <form action="atualizar_horario.php" method="POST" class="form-admin">
 
-    <p class="subtitulo">
+                <input
+                    type="hidden"
+                    name="id"
+                    value="<?= $horario["id"]; ?>">
 
-        Atualize as informações do horário.
+                <div class="form-group">
 
-    </p>
+                    <label for="horario">Horário</label>
 
-    <form action="atualizar_horario.php" method="POST">
+                    <input
+                        type="time"
+                        id="horario"
+                        name="horario"
+                        value="<?= date("H:i", strtotime($horario["horario"])); ?>"
+                        required>
 
-        <input
-            type="hidden"
-            name="id"
-            value="<?= $horario["id"]; ?>">
+                </div>
 
-        <label for="horario">
+                <div class="form-group">
 
-            Horário
+                    <label for="ativo">Status</label>
 
-        </label>
+                    <select
+                        id="ativo"
+                        name="ativo">
 
-        <input
-            type="time"
-            id="horario"
-            name="horario"
-            value="<?= date('H:i', strtotime($horario["horario"])); ?>"
-            required>
+                        <option
+                            value="1"
+                            <?= $horario["ativo"] ? "selected" : ""; ?>>
 
-        <label for="ativo">
+                            Ativo
 
-            Status
+                        </option>
 
-        </label>
+                        <option
+                            value="0"
+                            <?= !$horario["ativo"] ? "selected" : ""; ?>>
 
-        <select
-            id="ativo"
-            name="ativo">
+                            Inativo
 
-            <option
-                value="1"
-                <?= $horario["ativo"] ? "selected" : ""; ?>>
+                        </option>
 
-                Ativo
+                    </select>
 
-            </option>
+                </div>
 
-            <option
-                value="0"
-                <?= !$horario["ativo"] ? "selected" : ""; ?>>
+                <div class="form-acoes">
 
-                Inativo
+                    <button type="submit" class="btn">
 
-            </option>
+                        <i class="fa-solid fa-floppy-disk"></i>
 
-        </select>
+                        Salvar Alterações
 
-        <br><br>
+                    </button>
 
-        <button type="submit">
+                    <a href="listar_horarios.php" class="btn btn-secundario">
 
-            Salvar Alterações
+                        <i class="fa-solid fa-arrow-left"></i>
 
-        </button>
+                        Voltar
 
-        <a href="listar_horarios.php" class="btn">
+                    </a>
 
-            Cancelar
+                </div>
 
-        </a>
+            </form>
 
-    </form>
+        </div>
 
-</div>
+    </div>
 
-</body>
+</main>
 
-</html>
+<?php
+
+require_once "includes/admin_footer.php";
+
+?>
