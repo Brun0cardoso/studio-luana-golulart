@@ -1,0 +1,111 @@
+/* ==========================================================
+   MENU MOBILE
+   Studio Luana Goulart
+========================================================== */
+
+
+/* ==========================================================
+   BOTÃO HAMBÚRGUER
+========================================================== */
+
+.menu-toggle{
+
+    display:none;
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    position:relative;
+
+    z-index:1100;
+
+}
+
+.menu-toggle span{
+
+    display:block;
+
+    width:28px;
+
+    height:3px;
+
+    margin:6px auto;
+
+    background:var(--cor-preta);
+
+    border-radius:50px;
+
+    transition:.35s;
+
+}
+
+/* ==========================================================
+   ANIMAÇÃO DO BOTÃO
+========================================================== */
+
+.menu-toggle.ativo span:nth-child(1){
+
+    transform:translateY(9px) rotate(45deg);
+
+}
+
+.menu-toggle.ativo span:nth-child(2){
+
+    opacity:0;
+
+}
+
+.menu-toggle.ativo span:nth-child(3){
+
+    transform:translateY(-9px) rotate(-45deg);
+
+}
+
+
+/* ==========================================================
+   OVERLAY
+========================================================== */
+
+.menu-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:1040;
+
+}
+
+.menu-overlay.ativo{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* ==========================================================
+   TRAVA SCROLL
+========================================================== */
+
+body.menu-open{
+
+    overflow:hidden;
+
+}

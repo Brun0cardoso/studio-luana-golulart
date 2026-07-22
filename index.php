@@ -8,6 +8,7 @@ $horarios = listarHorarios($pdo);
 
 include "includes/head.php";
 include "includes/header.php";
+include "includes/alertas.php";
 include "includes/hero.php";
 include "includes/sobre.php";
 include "includes/servicos.php";

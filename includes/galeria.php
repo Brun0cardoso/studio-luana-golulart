@@ -1,6 +1,10 @@
-<section class="section section-galeria" id="galeria">
+<section class="section section-galeria reveal" id="galeria">
 
     <div class="container">
+
+        <!-- ======================================================
+             TÍTULO
+        ======================================================= -->
 
         <h2 class="section-title">
 
@@ -13,6 +17,10 @@
             Confira alguns dos resultados realizados no Studio Luana Goulart e inspire-se para o seu próximo atendimento.
 
         </p>
+
+        <!-- ======================================================
+             GALERIA DE IMAGENS
+        ======================================================= -->
 
         <div class="galeria-grid">
 

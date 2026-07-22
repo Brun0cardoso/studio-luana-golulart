@@ -1,12 +1,20 @@
-<section class="section" id="sobre">
+<section class="section reveal" id="sobre">
 
     <div class="container">
+
+        <!-- ======================================================
+             TÍTULO
+        ======================================================= -->
 
         <h2 class="section-title">
 
             Sobre o Studio
 
         </h2>
+
+        <!-- ======================================================
+             CONTEÚDO
+        ======================================================= -->
 
         <div class="about-content">
 

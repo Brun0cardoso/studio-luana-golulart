@@ -1,9 +1,9 @@
-<section class="section section-alt" id="depoimentos">
+<section class="section section-alt reveal" id="depoimentos">
 
     <div class="container">
 
         <!-- ======================================================
-             TÍTULO DA SEÇÃO
+             TÍTULO
         ======================================================= -->
 
         <h2 class="section-title">
@@ -12,24 +12,17 @@
 
         </h2>
 
-        <!-- ======================================================
-             SUBTÍTULO
-        ======================================================= -->
-
         <p class="section-subtitle">
 
-            A satisfação das nossas clientes é o reflexo do nosso compromisso
-            com qualidade, cuidado e atendimento personalizado.
+            A satisfação das nossas clientes é o reflexo do nosso compromisso com qualidade, cuidado e atendimento personalizado.
 
         </p>
 
         <!-- ======================================================
-             GRID DE DEPOIMENTOS
+             DEPOIMENTOS
         ======================================================= -->
 
         <div class="card-grid">
-
-            <!-- Depoimento 01 -->
 
             <article class="card testimonial-card">
 
@@ -47,8 +40,6 @@
 
             </article>
 
-            <!-- Depoimento 02 -->
-
             <article class="card testimonial-card">
 
                 <p>
@@ -64,8 +55,6 @@
                 </p>
 
             </article>
-
-            <!-- Depoimento 03 -->
 
             <article class="card testimonial-card">
 

@@ -16,6 +16,7 @@ header{
 
 }
 
+
 /* ======================================================
    CONTAINER
 ====================================================== */
@@ -30,7 +31,10 @@ header .container{
 
     min-height: 90px;
 
+    gap: 30px;
+
 }
+
 
 /* ======================================================
    LOGO
@@ -42,75 +46,115 @@ header .container{
 
     height: auto;
 
+    display: block;
+
     transition: var(--transicao);
 
 }
 
 .logo:hover{
 
-    transform:scale(1.05);
+    transform: scale(1.05);
 
 }
 
+
+/* ======================================================
+   NAVEGAÇÃO
+====================================================== */
+
+.menu-nav{
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+/* ======================================================
+   MENU
+====================================================== */
+
 .menu-header{
 
-    display:flex;
+    display: flex;
 
-    gap:35px;
+    align-items: center;
+
+    gap: 35px;
+
+    list-style: none;
+
+    margin: 0;
+
+    padding: 0;
 
 }
 
 .menu-header a{
 
-    display:block;
+    display: block;
 
-    padding:8px 0;
+    padding: 8px 0;
 
-    color:var(--cor-preta);
+    color: var(--cor-preta);
 
-    font-weight:600;
+    font-weight: 600;
 
-    position:relative;
+    text-decoration: none;
 
-    transition:var(--transicao);
+    position: relative;
+
+    transition: var(--transicao);
 
 }
 
 .menu-header a:hover{
 
-    color:var(--cor-primaria);
+    color: var(--cor-primaria);
 
 }
 
 .menu-header a::after{
 
-    content:"";
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    left:0;
+    left: 0;
 
-    bottom:-4px;
+    bottom: -4px;
 
-    width:0;
+    width: 0;
 
-    height:2px;
+    height: 2px;
 
-    border-radius:999px;
+    border-radius: 999px;
 
-    background:var(--cor-primaria);
+    background: var(--cor-primaria);
 
-    transition:var(--transicao);
+    transition: width .3s ease;
 
 }
 
 .menu-header a:hover::after{
 
-    width:100%;
+    width: 100%;
 
 }
 
 
+/* ======================================================
+   BOTÃO
+====================================================== */
 
+.btn-header{
 
+    flex-shrink: 0;
 
+}

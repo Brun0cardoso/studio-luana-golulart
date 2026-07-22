@@ -1,8 +1,14 @@
 /* ======================================================
-   FORMULÁRIO DE AGENDAMENTO
+   FORMULÁRIO
 ====================================================== */
 
 .formulario-agendamento{
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
 
     max-width: 850px;
 
@@ -18,22 +24,9 @@
 
 }
 
-/* ======================================================
-   GRID DO FORMULÁRIO
-====================================================== */
-
-.formulario-agendamento{
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 25px;
-
-}
 
 /* ======================================================
-   GRUPOS DE CAMPOS
+   GRUPOS
 ====================================================== */
 
 .form-group{
@@ -44,16 +37,15 @@
 
 }
 
-/* Campos que ocupam toda a largura */
-
-.form-group:has(textarea){
+.form-group-full{
 
     grid-column: 1 / -1;
 
 }
 
+
 /* ======================================================
-   LABELS
+   LABEL
 ====================================================== */
 
 .form-group label{
@@ -66,14 +58,13 @@
 
 }
 
+
 /* ======================================================
-   INPUTS
+   CAMPOS
 ====================================================== */
 
 .form-group input,
-
 .form-group select,
-
 .form-group textarea{
 
     width: 100%;
@@ -92,21 +83,23 @@
 
 }
 
+
 /* ======================================================
-   FOCO DOS CAMPOS
+   FOCO
 ====================================================== */
 
 .form-group input:focus,
-
 .form-group select:focus,
-
 .form-group textarea:focus{
+
+    outline: none;
 
     border-color: var(--cor-primaria);
 
     box-shadow: 0 0 0 4px rgba(214,51,132,.10);
 
 }
+
 
 /* ======================================================
    TEXTAREA
@@ -120,11 +113,12 @@
 
 }
 
+
 /* ======================================================
    BOTÃO
 ====================================================== */
 
-.formulario-agendamento button{
+.formulario-agendamento .btn{
 
     grid-column: 1 / -1;
 
@@ -134,8 +128,9 @@
 
 }
 
+
 /* ======================================================
-   TEXTO INFORMATIVO
+   INFORMAÇÃO
 ====================================================== */
 
 .form-info{
@@ -147,11 +142,5 @@
     font-size: .9rem;
 
     color: var(--cor-texto);
-
-}
-
-.form-group-full{
-
-    grid-column: 1 / -1;
 
 }

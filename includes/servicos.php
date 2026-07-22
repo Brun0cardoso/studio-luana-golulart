@@ -1,6 +1,10 @@
-<section class="section section-alt" id="servicos">
+<section class="section section-alt reveal" id="servicos">
 
     <div class="container">
+
+        <!-- ======================================================
+             TÍTULO
+        ======================================================= -->
 
         <h2 class="section-title">
 
@@ -14,7 +18,13 @@
 
         </p>
 
+        <!-- ======================================================
+             LISTA DE SERVIÇOS
+        ======================================================= -->
+
         <div class="card-grid">
+
+            <!-- Volume Brasileiro -->
 
             <article class="card">
 
@@ -32,15 +42,15 @@
 
                 </span>
 
-                <a
-                    href="#contato"
-                    class="btn btn-primary">
+                <a href="#contato" class="btn btn-primary">
 
                     Agendar
 
                 </a>
 
             </article>
+
+            <!-- Volume Egípcio -->
 
             <article class="card">
 
@@ -58,15 +68,15 @@
 
                 </span>
 
-                <a
-                    href="#contato"
-                    class="btn btn-primary">
+                <a href="#contato" class="btn btn-primary">
 
                     Agendar
 
                 </a>
 
             </article>
+
+            <!-- Volume 5D -->
 
             <article class="card">
 
@@ -84,15 +94,15 @@
 
                 </span>
 
-                <a
-                    href="#contato"
-                    class="btn btn-primary">
+                <a href="#contato" class="btn btn-primary">
 
                     Agendar
 
                 </a>
 
             </article>
+
+            <!-- Mega Brasileiro -->
 
             <article class="card">
 
@@ -110,9 +120,7 @@
 
                 </span>
 
-                <a
-                    href="#contato"
-                    class="btn btn-primary">
+                <a href="#contato" class="btn btn-primary">
 
                     Agendar
 
@@ -120,14 +128,15 @@
 
             </article>
 
+            <!-- Manutenção -->
+
             <article class="card">
 
                 <h3>Manutenção</h3>
 
                 <p>
 
-                    A manutenção é essencial para manter seus cílios sempre bonitos, cheios e bem alinhados. Como os fios naturais caem diariamente, é normal que a extensão fique com falhas ao longo das semanas.
-                    O ideal é fazer a manutenção a cada 15 a 20 dias, garantindo um resultado bonito, duradouro e preservando a saúde dos seus cílios naturais.
+                    A manutenção é essencial para manter seus cílios sempre bonitos, cheios e bem alinhados. Como os fios naturais caem diariamente, é recomendado realizá-la entre 15 e 20 dias para preservar um resultado bonito e duradouro.
 
                 </p>
 
@@ -137,9 +146,7 @@
 
                 </span>
 
-                <a
-                    href="#contato"
-                    class="btn btn-primary">
+                <a href="#contato" class="btn btn-primary">
 
                     Agendar
 
@@ -147,13 +154,15 @@
 
             </article>
 
+            <!-- Design de Sobrancelhas -->
+
             <article class="card">
 
                 <h3>Design de Sobrancelhas</h3>
 
                 <p>
 
-                    O design de sobrancelhas valoriza o formato do seu rosto, realça o olhar e deixa sua expressão mais harmoniosa. Cada atendimento é feito de forma personalizada, respeitando o crescimento natural dos fios e o seu estilo.
+                    Atendimento personalizado para valorizar o formato do rosto, realçar o olhar e proporcionar uma expressão mais harmoniosa, respeitando o crescimento natural dos fios.
 
                 </p>
 
@@ -163,9 +172,7 @@
 
                 </span>
 
-                <a
-                    href="#contato"
-                    class="btn btn-primary">
+                <a href="#contato" class="btn btn-primary">
 
                     Agendar
 

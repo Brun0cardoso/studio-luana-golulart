@@ -1,6 +1,10 @@
-<section class="section" id="contato">
+<section class="section reveal" id="contato">
 
     <div class="container">
+
+        <!-- ======================================================
+             TÍTULO
+        ======================================================= -->
 
         <h2 class="section-title">
 
@@ -14,10 +18,16 @@
 
         </p>
 
+        <!-- ======================================================
+             FORMULÁRIO
+        ======================================================= -->
+
         <form
             action="php/enviar.php"
             method="POST"
             class="formulario-agendamento">
+
+            <!-- Nome -->
 
             <div class="form-group">
 
@@ -36,6 +46,8 @@
 
             </div>
 
+            <!-- Telefone -->
+
             <div class="form-group">
 
                 <label for="telefone">
@@ -53,6 +65,8 @@
 
             </div>
 
+            <!-- E-mail -->
+
             <div class="form-group">
 
                 <label for="email">
@@ -68,6 +82,8 @@
                     maxlength="120">
 
             </div>
+
+            <!-- Serviço -->
 
             <div class="form-group">
 
@@ -102,6 +118,8 @@
 
             </div>
 
+            <!-- Data -->
+
             <div class="form-group">
 
                 <label for="data">
@@ -117,6 +135,8 @@
                     required>
 
             </div>
+
+            <!-- Horário -->
 
             <div class="form-group">
 
@@ -151,6 +171,8 @@
 
             </div>
 
+            <!-- Observações -->
+
             <div class="form-group form-group-full">
 
                 <label for="observacoes">
@@ -167,6 +189,8 @@
 
             </div>
 
+            <!-- Botão -->
+
             <button
                 type="submit"
                 class="btn btn-primary">
@@ -174,6 +198,8 @@
                 Agendar
 
             </button>
+
+            <!-- Informação -->
 
             <p class="form-info">
 

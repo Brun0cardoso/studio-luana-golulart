@@ -1,0 +1,240 @@
+/* ======================================================
+   RESPONSIVIDADE
+   Studio Luana Goulart
+====================================================== */
+
+/* ======================================================
+   TABLETS
+====================================================== */
+
+@media (max-width: 992px){
+
+    .section{
+
+        padding: 90px 0;
+
+    }
+
+    .hero{
+
+        min-height: auto;
+
+        padding: 120px 20px 80px;
+
+    }
+
+    .hero-title{
+
+        font-size: 3rem;
+
+    }
+
+    .card-grid{
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .estatisticas{
+
+        gap: 40px;
+
+    }
+
+    .btn-header{
+
+    display:none;
+
+}
+
+.menu-toggle{
+
+    display:block;
+
+}
+
+.menu-nav{
+
+    position:fixed;
+
+    top:0;
+
+    right:-100%;
+
+    width:300px;
+
+    max-width:80%;
+
+    height:100vh;
+
+    padding:100px 35px 40px;
+
+    background:var(--cor-branca);
+
+    box-shadow:-10px 0 30px rgba(0,0,0,.12);
+
+    transition:.35s;
+
+    z-index:1050;
+
+}
+
+.menu-nav.ativo{
+
+    right:0;
+
+}
+
+.menu-header{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+.menu-header li{
+
+    list-style:none;
+
+}
+
+.menu-header a{
+
+    display:block;
+
+    font-size:1.1rem;
+
+    font-weight:600;
+
+    color:var(--cor-preta);
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+.menu-header a:hover{
+
+    color:var(--cor-primaria);
+
+    padding-left:8px;
+
+}
+
+}
+
+
+/* ======================================================
+   CELULARES
+====================================================== */
+
+@media (max-width: 768px){
+
+    .section{
+
+        padding: 70px 0;
+
+    }
+
+    .hero-title{
+
+        font-size: 2.4rem;
+
+    }
+
+    .hero-subtitle{
+
+        font-size: 1.1rem;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction: column;
+
+    }
+
+    .hero-buttons .btn{
+
+        width: 100%;
+
+    }
+
+    .card-grid{
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .formulario-agendamento{
+
+        grid-template-columns: 1fr;
+
+        padding: 30px;
+
+    }
+
+    .form-group-full{
+
+        grid-column: auto;
+
+    }
+
+    .formulario-agendamento .btn{
+
+        width: 100%;
+
+        min-width: auto;
+
+    }
+
+    .estatisticas{
+
+        flex-direction: column;
+
+        gap: 30px;
+
+    }
+
+}
+
+
+/* ======================================================
+   CELULARES PEQUENOS
+====================================================== */
+
+@media (max-width: 480px){
+
+    .hero-title{
+
+        font-size: 2rem;
+
+    }
+
+    .section-title{
+
+        font-size: 2rem;
+
+    }
+
+    .logo{
+
+        width: 140px;
+
+    }
+
+    .whatsapp-button{
+
+        width: 55px;
+
+        height: 55px;
+
+        font-size: 1.7rem;
+
+    }
+
+}

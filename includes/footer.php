@@ -170,9 +170,13 @@
 
 </a>
 
-<script src="assets/js/script.js"></script>
-<script src="../assets/js/main.js"></script>
-<script src="../assets/js/telefone.js"></script>
+<!-- ======================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/telefone.js"></script>
+
 
 </body>
 
