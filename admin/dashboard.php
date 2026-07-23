@@ -523,8 +523,6 @@ require_once "includes/admin_header.php";
 
             </div>
 
-        </main>
-
     </div>
 
 </div>

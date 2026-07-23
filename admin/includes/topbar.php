@@ -46,7 +46,6 @@ switch ($paginaAtual) {
     case "listar_horarios.php":
         $tituloPagina = "Horários";
         break;
-
 }
 
 /*
@@ -57,10 +56,24 @@ switch ($paginaAtual) {
 
 $dataAtual = date("d/m/Y");
 
+ /*
+    |--------------------------------------------------------------------------
+    | Notificações
+    |--------------------------------------------------------------------------
+    */
+
+    $notificacoes = $pdo->query("
+    SELECT COUNT(*)
+    FROM agendamentos
+    WHERE status = 'Pendente'
+    ")->fetchColumn();
+
+
 ?>
 
 <header class="topbar">
 
+   
     <!-- =====================================================
          LADO ESQUERDO
     ====================================================== -->
@@ -109,7 +122,11 @@ $dataAtual = date("d/m/Y");
 
             <i class="fa-regular fa-bell"></i>
 
-            <span class="badge">0</span>
+            <span class="badge">
+
+                <?= $notificacoes ?>
+
+            </span>
 
         </div>
 
@@ -142,22 +159,20 @@ $dataAtual = date("d/m/Y");
 </header>
 
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener("DOMContentLoaded", () => {
+        const botao = document.getElementById("menuToggle");
+        const sidebar = document.querySelector(".sidebar");
 
-    const botao = document.getElementById("menuToggle");
-    const sidebar = document.querySelector(".sidebar");
+        if (botao && sidebar) {
 
-    if(botao && sidebar){
+            botao.addEventListener("click", () => {
 
-        botao.addEventListener("click", () => {
+                sidebar.classList.toggle("ativo");
 
-            sidebar.classList.toggle("ativo");
+            });
 
-        });
+        }
 
-    }
-
-});
-
+    });
 </script>
