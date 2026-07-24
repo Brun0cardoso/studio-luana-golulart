@@ -7,15 +7,15 @@
    TABLETS
 ====================================================== */
 
-@media (max-width: 992px){
+@media (max-width: 992px) {
 
-    .section{
+    .section {
 
         padding: 90px 0;
 
     }
 
-    .hero{
+    .hero {
 
         min-height: auto;
 
@@ -23,107 +23,112 @@
 
     }
 
-    .hero-title{
+    .hero-title {
 
         font-size: 3rem;
 
     }
 
-    .card-grid{
+    .card-grid {
 
         grid-template-columns: repeat(2, 1fr);
 
     }
 
-    .estatisticas{
+    .estatisticas {
 
         gap: 40px;
 
     }
 
-    .btn-header{
+    .btn-header {
 
-    display:none;
+        display: none;
 
-}
+    }
 
-.menu-toggle{
+    .menu-toggle {
 
-    display:block;
+        display: block;
 
-}
+    }
 
-.menu-nav{
+    .menu-nav {
 
-    position:fixed;
+        position: fixed;
 
-    top:0;
+        top: 0;
 
-    right:-100%;
+        right: -100%;
 
-    width:300px;
+        width: 280px;
 
-    max-width:80%;
+        max-width: 80%;
 
-    height:100vh;
+        height: 100vh;
 
-    padding:100px 35px 40px;
+        background: #fff;
 
-    background:var(--cor-branca);
+        padding: 110px 35px;
 
-    box-shadow:-10px 0 30px rgba(0,0,0,.12);
+        transition: .35s;
 
-    transition:.35s;
+        z-index: 1100;
 
-    z-index:1050;
+        overflow-y: auto;
 
-}
+    }
 
-.menu-nav.ativo{
+    .menu-nav.ativo {
 
-    right:0;
+        right: 0;
 
-}
+    }
 
-.menu-header{
+    .menu-header {
 
-    display:flex;
+        width: 100%;
 
-    flex-direction:column;
+        display: flex;
 
-    gap:25px;
+        flex-direction: column;
 
-}
+        align-items: center;
 
-.menu-header li{
+        gap: 35px;
 
-    list-style:none;
+    }
 
-}
 
-.menu-header a{
+    .menu-header li {
 
-    display:block;
+        list-style: none;
 
-    font-size:1.1rem;
+    }
 
-    font-weight:600;
+    .menu-header a {
 
-    color:var(--cor-preta);
+        display: block;
 
-    text-decoration:none;
+        font-size: 1.1rem;
 
-    transition:.25s;
+        font-weight: 600;
 
-}
+        color: var(--cor-preta);
 
-.menu-header a:hover{
+        text-decoration: none;
 
-    color:var(--cor-primaria);
+        transition: .25s;
 
-    padding-left:8px;
+    }
 
-}
+    .menu-header a:hover {
+
+        color: var(--cor-primaria);
+
+        padding-left: 8px;
+
+    }
 
 }
 
@@ -132,45 +137,45 @@
    CELULARES
 ====================================================== */
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
-    .section{
+    .section {
 
         padding: 70px 0;
 
     }
 
-    .hero-title{
+    .hero-title {
 
         font-size: 2.4rem;
 
     }
 
-    .hero-subtitle{
+    .hero-subtitle {
 
         font-size: 1.1rem;
 
     }
 
-    .hero-buttons{
+    .hero-buttons {
 
         flex-direction: column;
 
     }
 
-    .hero-buttons .btn{
+    .hero-buttons .btn {
 
         width: 100%;
 
     }
 
-    .card-grid{
+    .card-grid {
 
         grid-template-columns: 1fr;
 
     }
 
-    .formulario-agendamento{
+    .formulario-agendamento {
 
         grid-template-columns: 1fr;
 
@@ -178,13 +183,13 @@
 
     }
 
-    .form-group-full{
+    .form-group-full {
 
         grid-column: auto;
 
     }
 
-    .formulario-agendamento .btn{
+    .formulario-agendamento .btn {
 
         width: 100%;
 
@@ -192,7 +197,7 @@
 
     }
 
-    .estatisticas{
+    .estatisticas {
 
         flex-direction: column;
 
@@ -207,27 +212,27 @@
    CELULARES PEQUENOS
 ====================================================== */
 
-@media (max-width: 480px){
+@media (max-width: 480px) {
 
-    .hero-title{
-
-        font-size: 2rem;
-
-    }
-
-    .section-title{
+    .hero-title {
 
         font-size: 2rem;
 
     }
 
-    .logo{
+    .section-title {
+
+        font-size: 2rem;
+
+    }
+
+    .logo {
 
         width: 140px;
 
     }
 
-    .whatsapp-button{
+    .whatsapp-button {
 
         width: 55px;
 
@@ -236,5 +241,67 @@
         font-size: 1.7rem;
 
     }
+
+    header .container {
+
+        min-height: 80px;
+
+    }
+
+    .logo {
+
+        width: 95px;
+
+    }
+
+    .menu-toggle {
+
+        display: block;
+
+    }
+
+}
+
+/* ======================================================
+   OVERLAY
+====================================================== */
+
+body {
+
+    overflow-x: hidden;
+
+}
+
+body.menu-open {
+
+    overflow: hidden;
+
+}
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, .45);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 1000;
+
+}
+
+body.menu-open::before {
+
+    opacity: 1;
+
+    visibility: visible;
 
 }

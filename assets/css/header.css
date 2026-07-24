@@ -42,7 +42,7 @@ header .container{
 
 .logo{
 
-    width: 170px;
+    width: 120px;
 
     height: auto;
 
@@ -156,5 +156,61 @@ header .container{
 .btn-header{
 
     flex-shrink: 0;
+
+}
+
+.menu-toggle{
+
+    display: none;
+
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    position: relative;
+
+    z-index: 1200;
+
+}
+
+.menu-toggle span{
+
+    display: block;
+
+    width: 28px;
+
+    height: 3px;
+
+    margin: 6px auto;
+
+    background: var(--cor-preta);
+
+    transition: .3s;
+
+    border-radius: 10px;
+
+}
+
+.menu-toggle.ativo span:nth-child(1){
+
+    transform: translateY(9px) rotate(45deg);
+
+}
+
+.menu-toggle.ativo span:nth-child(2){
+
+    opacity: 0;
+
+}
+
+.menu-toggle.ativo span:nth-child(3){
+
+    transform: translateY(-9px) rotate(-45deg);
 
 }
